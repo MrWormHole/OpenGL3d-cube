@@ -1,12 +1,16 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#include <SDL2/SDL.h>
+#include <iostream>
 #include <string>
+#include <SDL2/SDL.h>
+#include <GL/glew.h>
+
+using namespace std;
 
 class Display {
 public:
-	Display(int width,int height,const std::string& title);
+	Display(int width,int height,const string& title);
 	virtual ~Display();
 	void clear(float r, float g, float b, float a);
 	void update();
