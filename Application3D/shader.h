@@ -17,11 +17,10 @@ public:
 protected:
 private:
 	static const unsigned int numberOfShaders = 2; //vertex and fragment shaders(didn't include geometry shader yet)
-	Shader(const Shader& other);
-	Shader& operator=(const Shader& other);
-
 	GLuint myProgram;
 	GLuint allShaders[numberOfShaders];
+	Shader(const Shader& other);
+	Shader& operator=(const Shader& other);
 };
 
 #endif

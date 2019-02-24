@@ -17,12 +17,11 @@ public:
 	bool isClosed();
 protected:
 private:
-	Display(const Display& other);
-	Display& operator=(const Display& other);
-
 	SDL_Window* myWindow;
 	SDL_GLContext myGLContext;
 	bool closed;
+	Display(const Display& other);
+	Display& operator=(const Display& other);
 };
 
 #endif
