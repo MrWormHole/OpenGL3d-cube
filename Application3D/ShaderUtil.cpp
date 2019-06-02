@@ -26,6 +26,7 @@ unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& frag
 	unsigned int fragmentShader = getCompiledShader(GL_FRAGMENT_SHADER, file_fragmentShader);
 
 	glBindAttribLocation(programID, 8, "position"); //this is for meshUtil to send position data
+	glBindAttribLocation(programID, 9, "texCoord"); //this is for meshUtil to send texture position data
 
 	glAttachShader(programID, vertexShader);
 	glAttachShader(programID, fragmentShader);

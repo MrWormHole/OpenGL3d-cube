@@ -1,6 +1,7 @@
 #include <GLEW/glew.h>
 #include <glm/glm.hpp>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 using namespace glm;
@@ -20,7 +21,7 @@ public:
 	~MeshUtil();
 
 	//creating the mesh
-	void create(Vertex* vertices,Vertex* vertices2, unsigned int numberOfVertices);
+	void create(Vertex* vertices, float* textureCoordinates,unsigned int numberOfVertices);
 
 	void create(Vertex* vertices, unsigned short* indices, unsigned int numberOfVertices);
 
@@ -35,7 +36,6 @@ private:
 	bool isEABused = false;
 	int rendererID = 0;
 	GLuint myVAO; //vertex array object
-	//GLuint myVAO[2];
 	GLuint myVAB[10]; //vertex array buffer
 	GLuint myEAB[10]; //element array buffer
 };

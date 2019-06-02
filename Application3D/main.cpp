@@ -3,8 +3,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "MeshUtil.h"
 #include "ShaderUtil.h"
+#include "TextureUtil.h"
+#include "MeshUtil.h"
 #include "PhysicsUtil.h"
 
 int main()
@@ -48,7 +49,7 @@ int main()
 			Vertex(vec3(0.5f,-0.7f,0.0f))
 		};
 
-		Vertex triangleVertices2[] = {
+		/*Vertex triangleVertices2[] = {
 			Vertex(vec3(0.8f,0.5f,0.0f)),
 			Vertex(vec3(0.0f,-0.9f,0.0f)),
 			Vertex(vec3(-0.5f,0.7f,0.0f))
@@ -60,41 +61,31 @@ int main()
 			Vertex(vec3(0.5f,-0.5f,0.0f)),
 			Vertex(vec3(0.5f,0.5f,0.0f)),
 			Vertex(vec3(-0.5f,0.5f,0.0f)),
-		};
+		};*/
 
 		unsigned short squareIndices[6] = {
 			0,1,2,
 			2,3,0
 		};
 
+		//for texture
+		float textureCoordinates[] = {
+			0.0f,0.0f, //lower left
+			1.0f,0.0f, //lower right
+			0.5f,1.0f  //top center
+		};
+
 		ShaderUtil shaderUtil;
-		shaderUtil.load("res/basicShader.v", "res/basicShader.f");
+		shaderUtil.load("res/matrixShader.v", "res/matrixShader.f");
+
+		TextureUtil textureUtil;
+		textureUtil.load("res/marble.jpg");
 
 		MeshUtil meshUtil;
-		meshUtil.create(triangleVertices, triangleVertices2, 3);
-		//meshUtil.create(triangleVertices2, sizeof(triangleVertices2) / sizeof(triangleVertices2[0]));
-
-
-		/*float points[6] = {
-			-0.8f,-0.5f, //left
-			0.0f,0.9f, //top
-			0.5f,-0.7f //right
-		};*/
-
-		/*unsigned int buffer;
-		//create buffer
-		glGenBuffers(1, &buffer);
-
-		//bind the buffer to vertex attributes
-		glBindBuffer(GL_ARRAY_BUFFER, buffer);
-
-		//init the buffer
-		glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), points, GL_STATIC_DRAW);
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);*/
-
+		meshUtil.create(triangleVertices, textureCoordinates, 3);
+	
 		shaderUtil.bind();
+		textureUtil.bind();
 
 		float n = 0.2f;
 		bool goUp = true;
@@ -104,11 +95,11 @@ int main()
 		{
 			if (goUp) { n += 0.02f; if (n > 1.0f) { goUp = false; } }
 			else { n -= 0.02f; if (n < 0.2f) { goUp = true; } }
+
 			/* Render here */
 			glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			//glDrawArrays(GL_TRIANGLES, 0, 3);
 			meshUtil.draw();
 
 			/* Scaling shape and tinting color animation */
@@ -123,8 +114,8 @@ int main()
 		}
 
 		shaderUtil.unbind();
+		textureUtil.unbind();
 	}
-	
 
 	glfwTerminate();
 	return 1;

@@ -2,8 +2,6 @@
 
 MeshUtil::MeshUtil()
 {
-	glGenVertexArrays(1, &myVAO);
-	glGenBuffers(2, myVAB);
 	cout << "MeshUtil started" << endl;
 }
 
@@ -12,29 +10,25 @@ MeshUtil::~MeshUtil()
 	cout << "MeshUtil stopped" << endl;
 }
 
-void MeshUtil::create(Vertex* vertices, Vertex* vertices2, unsigned int numberOfVertices) {
+void MeshUtil::create(Vertex* vertices,float* textureCoordinates, unsigned int numberOfVertices) {
 	myDrawCount = numberOfVertices;
 
+	glGenVertexArrays(1, &myVAO);
+	glGenBuffers(2, myVAB);
 	
 	glBindVertexArray(myVAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, myVAB[0]);
-	glBufferData(GL_ARRAY_BUFFER, numberOfVertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, numberOfVertices * sizeof(vec3), vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(8);
 	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-
-	glBindVertexArray(myVAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, myVAB[1]);
-	glBufferData(GL_ARRAY_BUFFER, numberOfVertices * sizeof(Vertex), vertices2, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(8);
-	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+	glBufferData(GL_ARRAY_BUFFER, numberOfVertices * sizeof(float) * 2, textureCoordinates, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(9);
+	glVertexAttribPointer(9, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
 	glBindVertexArray(0);
 }
 
@@ -57,7 +51,7 @@ void MeshUtil::create(Vertex* vertices, unsigned short* indices, unsigned int nu
 	glEnableVertexAttribArray(8);
 	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
 	glBindVertexArray(0);
 };
 
@@ -67,14 +61,11 @@ void MeshUtil::destroy() {
 
 void MeshUtil::draw() {
 	glBindVertexArray(myVAO);
+
 	if (!isEABused) { glDrawArrays(GL_TRIANGLES, 0, myDrawCount); }
 	else { glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr); }
-	//glBindVertexArray(0);
-	/*if (myVAO2 != NULL) {
-		glBindVertexArray(myVAO[1]);
-		glDrawArrays(GL_TRIANGLES, 0, myDrawCount); 
-		//glBindVertexArray(0);
-	}*/
+
+	glBindVertexArray(0);
 }
 
 
