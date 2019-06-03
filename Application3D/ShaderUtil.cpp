@@ -65,8 +65,8 @@ unsigned int ShaderUtil::getCompiledShader(unsigned int shaderType,const string&
 
 void ShaderUtil::bind() {
 	glUseProgram(programID);
-	//locScale = glGetUniformLocation(programID, "scale");
 	//locColor = glGetUniformLocation(programID, "color");
+	locModel = glGetUniformLocation(programID, "model");
 }
 
 void ShaderUtil::unbind() {
@@ -114,16 +114,6 @@ string ShaderUtil::readFromShaderFile(const string& fileName) {
 	}
 
 	return output;
-}
-
-void ShaderUtil::scale(float value) {
-	if (locScale != -1)
-	{
-		glUniform1f(locScale, value);
-	}
-	else {
-		cout << "can not find location of scale variable" << endl;
-	}
 }
 
 void ShaderUtil::tint(float value) {

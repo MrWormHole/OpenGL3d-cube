@@ -26,15 +26,16 @@ public:
 	//reading the shader file
 	string readFromShaderFile(const string& fileName);
 
-	//testing purposes
-	void scale(float value);
+	//changing the color
 	void tint(float value);
 
 	inline unsigned int getProgramID() { return programID; }
+	inline GLint getLocColor() { return locColor; }
+	inline GLint getLocModel() { return locModel; }
 private:
 	unsigned int programID;
-	GLint locScale;
 	GLint locColor;
+	GLint locModel;
 
 	unsigned int getCompiledShader(unsigned int shaderType,	const string& shaderSource);
 };
