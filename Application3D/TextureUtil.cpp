@@ -17,7 +17,7 @@ void TextureUtil::load(const string& fileName) {
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &channels, 4);
 
-	if (imageData == NULL) { cerr << "Texture loading failed: " << fileName << endl; }
+	checkTextureError(imageData,fileName);
 
 	glGenTextures(1, &myTexture);
 	glBindTexture(GL_TEXTURE_2D, myTexture);
@@ -42,4 +42,10 @@ void TextureUtil::bind() {
 
 void TextureUtil::unbind() {
 	glDeleteTextures(1, &myTexture);
+}
+
+void TextureUtil::checkTextureError(unsigned char* imageData,const string fileName) {
+	if (imageData == NULL) { 
+		cerr << "Texture loading failed: " << fileName << endl; 
+	}
 }

@@ -111,6 +111,8 @@ int main()
 			frames++;
 			if (currentTime - lastTime >= 1.0) { 
 				printf("%f ms/frame\n", 1000.0 / double(frames));
+				const string title = "OpenGL is awesome [" + to_string(frames) + " FPS]";
+				glfwSetWindowTitle(window, title.c_str());
 				frames = 0;
 				lastTime += 1.0;
 			}

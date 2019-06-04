@@ -7,7 +7,6 @@ PhysicsUtil::PhysicsUtil()
 
 PhysicsUtil::~PhysicsUtil()
 {
-	
 	cout << "PhysicsUtil stopped" << endl;
 }
 

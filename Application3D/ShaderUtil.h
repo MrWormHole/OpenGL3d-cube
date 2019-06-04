@@ -21,7 +21,7 @@ public:
 	void unbind();
 
 	//checking for shader errors
-	void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const string & errorMessage);
+	void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const string& errorMessage);
 
 	//reading the shader file
 	string readFromShaderFile(const string& fileName);
