@@ -20,9 +20,10 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "OpenGL is awesome", NULL, NULL);
+	window = glfwCreateWindow(800, 600, "OpenGL is awesome", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -31,6 +32,13 @@ int main()
 	
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
+	// enable depth test
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS); // try GL_ALWAYS to freak out
+	// enable alpha support
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	// log the version
 	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
 
 	GLenum err = glewInit();
@@ -42,13 +50,14 @@ int main()
 	else {
 		fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
-		//for triangle
-		Vertex triangleVertices2[] = {
+		//for a regular triangle
+		Vertex triangleVerticesFirstExample[] = {
 			Vertex(vec3(-0.8f,-0.5f,0.0f)),
 			Vertex(vec3(0.0f,0.9f,0.0f)),
 			Vertex(vec3(0.5f,-0.7f,0.0f))
 		};
 
+		//for illuminati triangle
 		Vertex triangleVertices[] = {
 			Vertex(vec3(-0.5f,-0.5f,0.0f)),
 			Vertex(vec3(0.5f,-0.5f,0.0f)),
@@ -63,38 +72,76 @@ int main()
 			Vertex(vec3(-0.5f,0.5f,0.0f)),
 		};
 
+		//for square
 		unsigned short squareIndices[6] = {
 			0,1,2,
 			2,3,0
 		};
 
-		//for texture
-		float textureCoordinates2[] = {
-			-0.25f,1.0f, //lower left
-			0.37f,-0.25f, //lower right
-			1.0f,1.0f  //top center
-		};
-
-		float textureCoordinates[] = {
+		//for illuminati texture
+		float textureCoordinates[6] = {
 			0.25f,0.1f, //lower left
 			0.75f,0.1f, //lower right
 			0.5f,0.9f  //top center
 		};
 
+		//for cube !!be aware this is unoptimized drawing without element buffer array!!
+		Vertex cubaData[36] = {
+			Vertex(-1.0f,-1.0f,-1.0f,1.0f,0.0f,0.0f,1.0f),
+			Vertex(-1.0f,-1.0f, 1.0f,1.0f,0.0f,0.0f,1.0f),
+			Vertex(-1.0f, 1.0f, 1.0f,1.0f,0.0f,0.0f,1.0f), 
+			Vertex(1.0f, 1.0f,-1.0f,1.0f,0.0f,0.0f,1.0f), 
+			Vertex(-1.0f,-1.0f,-1.0f,1.0f,0.0f,0.0f,1.0f),
+			Vertex(-1.0f, 1.0f,-1.0f,1.0f,0.0f,0.0f,1.0f), 
+			Vertex(1.0f,-1.0f, 1.0f,0.0f,1.0f,0.0f,1.0f),
+			Vertex(-1.0f,-1.0f,-1.0f,0.0f,1.0f,0.0f,1.0f),
+			Vertex(1.0f,-1.0f,-1.0f,0.0f,1.0f,0.0f,1.0f),
+			Vertex(1.0f, 1.0f,-1.0f,0.0f,1.0f,0.0f,1.0f),
+			Vertex(1.0f,-1.0f,-1.0f,0.0f,1.0f,0.0f,1.0f),
+			Vertex(-1.0f,-1.0f,-1.0f,0.0f,1.0f,0.0f,1.0f),
+			Vertex(-1.0f,-1.0f,-1.0f,0.0f,0.0f,1.0,1.0f),
+			Vertex(-1.0f, 1.0f, 1.0f,0.0f,0.0f,1.0,1.0f),
+			Vertex(-1.0f, 1.0f,-1.0f,0.0f,0.0f,1.0,1.0f),
+			Vertex(1.0f,-1.0f, 1.0f,0.0f,0.0f,1.0,1.0f),
+			Vertex(-1.0f,-1.0f, 1.0f,0.0f,0.0f,1.0,1.0f),
+			Vertex(-1.0f,-1.0f,-1.0f,0.0f,0.0f,1.0,1.0f),
+			Vertex(-1.0f, 1.0f, 1.0f,1.0f,1.0f,0.0,1.0f),
+			Vertex(-1.0f,-1.0f, 1.0f,1.0f,1.0f,0.0,1.0f),
+			Vertex(1.0f,-1.0f, 1.0f,1.0f,1.0f,0.0,1.0f),
+			Vertex(1.0f, 1.0f, 1.0f,1.0f,1.0f,0.0,1.0f),
+			Vertex(1.0f,-1.0f,-1.0f,1.0f,1.0f,0.0,1.0f),
+			Vertex(1.0f, 1.0f,-1.0f,1.0f,1.0f,0.0,1.0f),
+			Vertex(1.0f,-1.0f,-1.0f,0.0f,1.0f,1.0f,1.0f),
+			Vertex(1.0f, 1.0f, 1.0f,0.0f,1.0f,1.0f,1.0f),
+			Vertex(1.0f,-1.0f, 1.0f,0.0f,1.0f,1.0f,1.0f),
+			Vertex(1.0f, 1.0f, 1.0f,0.0f,1.0f,1.0f,1.0f),
+			Vertex(1.0f, 1.0f,-1.0f,0.0f,1.0f,1.0f,1.0f),
+			Vertex(-1.0f, 1.0f,-1.0f,0.0f,1.0f,1.0f,1.0f),
+			Vertex(1.0f, 1.0f, 1.0f,1.0f,0.0f,1.0f,1.0f),
+			Vertex(-1.0f, 1.0f,-1.0f,1.0f,0.0f,1.0f,1.0f),
+			Vertex(-1.0f, 1.0f, 1.0f,1.0f,0.0f,1.0f,1.0f),
+			Vertex(1.0f, 1.0f, 1.0f,1.0f,0.0f,1.0f,1.0f),
+			Vertex(-1.0f, 1.0f, 1.0f,1.0f,0.0f,1.0f,1.0f),
+			Vertex(1.0f,-1.0f, 1.0f,1.0f,0.0f,1.0f,1.0f)
+		};
+			
 		ShaderUtil shaderUtil;
 		shaderUtil.load("res/basicShader.v", "res/basicShader.f");
 
-		TextureUtil textureUtil;
-		textureUtil.load("res/illuminati.png");
+		//TextureUtil textureUtil;
+		//textureUtil.load("res/illuminati.png");
 
 		MeshUtil meshUtil;
-		meshUtil.create(triangleVertices, textureCoordinates, 3);
+		//meshUtil.create(triangleVertices, textureCoordinates, 3);
+		meshUtil.createCube(cubaData);
 
 		PhysicsUtil physicsUtil;
 		physicsUtil.flushTransformValues();
+
+		Camera cam(vec3(0,0,6), 70.0f, (float)(800/600), 0.01f, 1000.0f);
 	
 		shaderUtil.bind();
-		textureUtil.bind();
+		//textureUtil.bind();
 
 		//testing variables
 		float n = 0.2f;
@@ -121,21 +168,25 @@ int main()
 
 			/* Render here */
 			glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			vec3 test1(physicsUtil.getPosition());
-			vec3 test2(physicsUtil.getRotation());
-			vec3 test3(cosf(c), cosf(c), cosf(c));
+			vec3 test1(physicsUtil.getPosition()); //position
+			vec3 test2(physicsUtil.getRotation()); //rotation
+			//vec3 test3(cosf(c), cosf(c), cosf(c)); //scale
 			test1.x = sinf(c);
+			test1.z = 2 * cosf(c);
 			test2.z += 0.05f;
+			test2.y += 0.05f;
+			test2.x += 0.05f;
 
 			physicsUtil.setPosition(test1);
 			physicsUtil.setRotation(test2);
-			physicsUtil.setScale(test3);
+			//physicsUtil.setScale(test3);
 			
-			physicsUtil.update(shaderUtil.getLocModel());
+			physicsUtil.update(cam,shaderUtil.getLocMVP());
 
-			meshUtil.draw();
+			//meshUtil.draw();
+			meshUtil.drawCube();
 
 			/* Swap front and back buffers */
 			glfwSwapBuffers(window);
@@ -146,7 +197,7 @@ int main()
 		}
 
 		shaderUtil.unbind();
-		textureUtil.unbind();
+		//textureUtil.unbind();
 	}
 
 	glfwTerminate();

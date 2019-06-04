@@ -25,8 +25,9 @@ unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& frag
 	unsigned int vertexShader = getCompiledShader(GL_VERTEX_SHADER, file_vertexShader);
 	unsigned int fragmentShader = getCompiledShader(GL_FRAGMENT_SHADER, file_fragmentShader);
 
-	glBindAttribLocation(programID, 8, "position"); //this is for meshUtil to send position data
-	glBindAttribLocation(programID, 9, "texCoord"); //this is for meshUtil to send texture position data
+	//glBindAttribLocation(programID, 8, "position"); //this is for meshUtil to send position data
+	//glBindAttribLocation(programID, 9, "texCoord"); //this is for meshUtil to send texture position data
+	//glBindAttribLocation(programID, 10, "color"); //this is for meshUtil to send color data
 
 	glAttachShader(programID, vertexShader);
 	glAttachShader(programID, fragmentShader);
@@ -66,7 +67,8 @@ unsigned int ShaderUtil::getCompiledShader(unsigned int shaderType,const string&
 void ShaderUtil::bind() {
 	glUseProgram(programID);
 	//locColor = glGetUniformLocation(programID, "color");
-	locModel = glGetUniformLocation(programID, "model");
+	locMVP = glGetUniformLocation(programID, "MVP");
+	cout << locMVP << endl;
 }
 
 void ShaderUtil::unbind() {

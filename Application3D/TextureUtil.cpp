@@ -38,10 +38,12 @@ void TextureUtil::load(const string& fileName) {
 void TextureUtil::bind() {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, myTexture);
+	cout << "TEXTURE IS BINDED" << endl;
 }
 
 void TextureUtil::unbind() {
 	glDeleteTextures(1, &myTexture);
+	cout << "TEXTURE IS UNBINDED" << endl;
 }
 
 void TextureUtil::checkTextureError(unsigned char* imageData,const string fileName) {

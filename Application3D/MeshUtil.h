@@ -8,9 +8,15 @@ using namespace glm;
 
 struct Vertex {
 	vec3 vector3D;
+	vec4 colorRGBA;
 
 	Vertex(const vec3& vector3D) {
 		this->vector3D = vector3D;
+	}
+
+	Vertex(const float x,const float y,const float z ,const float r ,const float g,const float b ,const float a) {
+		vector3D = vec3(x, y, z);
+		colorRGBA = vec4(r, g, b, a);
 	}
 };
 
@@ -30,6 +36,12 @@ public:
 
 	//draw the mesh
 	void draw();
+
+	//create a cube
+	void createCube(Vertex* cubeData);
+
+	//draw a cube
+	void drawCube();
 
 private:
 	unsigned int myDrawCount;

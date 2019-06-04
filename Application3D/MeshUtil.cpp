@@ -68,4 +68,28 @@ void MeshUtil::draw() {
 	glBindVertexArray(0);
 }
 
+void MeshUtil::createCube(Vertex* vertices) {
+	myDrawCount = 36; //not really optimized for drawing
+
+	glGenVertexArrays(1, &myVAO);
+	glGenBuffers(1, myVAB);
+
+	glBindVertexArray(myVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, myVAB[0]);
+	glBufferData(GL_ARRAY_BUFFER, 36 * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(8);
+	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (GLvoid *)0);
+	glEnableVertexAttribArray(10);
+	glVertexAttribPointer(10, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (GLvoid *)(3 * sizeof(float)));
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindVertexArray(0);
+}
+
+void MeshUtil::drawCube() {
+	glBindVertexArray(myVAO);
+	glDrawArrays(GL_TRIANGLES, 0, myDrawCount);
+	glBindVertexArray(0);
+}
+
 

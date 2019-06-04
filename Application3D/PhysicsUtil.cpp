@@ -10,12 +10,12 @@ PhysicsUtil::~PhysicsUtil()
 	cout << "PhysicsUtil stopped" << endl;
 }
 
-void PhysicsUtil::update(GLint locModel) {
-	if (locModel != -1) {
-		glUniformMatrix4fv(locModel, 1, GL_FALSE, &(getModelMatrix()[0][0]));
+void PhysicsUtil::update(Camera& camera,GLint locMVP) {
+	if (locMVP != -1) {
+		glUniformMatrix4fv(locMVP, 1, GL_FALSE, &(getMVPmatrix(camera)[0][0]));
 	}
 	else {
-		cout << "can not find location of transform variable" << endl;
+		cout << "can not find location of Model-View-Projection variable" << endl;
 	}
 }
 

@@ -3,6 +3,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <GLM/gtx/transform.hpp>
 #include <iostream>
+#include "Camera.h"
 
 using namespace std;
 using namespace glm;
@@ -13,8 +14,8 @@ public:
 	PhysicsUtil();
 	virtual ~PhysicsUtil();
 
-	//updates the model matrix
-	void update(GLint locModel);
+	//updates the model-view-projection matrix
+	void update(Camera& camera, GLint locMVP);
 
 	//set default transform values
 	void flushTransformValues();
@@ -41,9 +42,14 @@ public:
 
 		return positionMatrix * rotationMatrix * scaleMatrix;
 	}
+
+	const mat4 getMVPmatrix(Camera &camera) {
+		return camera.getViewProjectionMatrix() * getModelMatrix(); // projection M * view M * model M
+	}
 private:
 	vec3 myPosition;
 	vec3 myRotation;
 	vec3 myScale;
+	mat4 MVPmatrix;
 };
 

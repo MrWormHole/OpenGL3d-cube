@@ -31,11 +31,11 @@ public:
 
 	inline unsigned int getProgramID() { return programID; }
 	inline GLint getLocColor() { return locColor; }
-	inline GLint getLocModel() { return locModel; }
+	inline GLint getLocMVP() { return locMVP; }
 private:
 	unsigned int programID;
 	GLint locColor;
-	GLint locModel;
+	GLint locMVP;
 
 	unsigned int getCompiledShader(unsigned int shaderType,	const string& shaderSource);
 };
