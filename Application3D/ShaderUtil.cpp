@@ -2,13 +2,13 @@
 
 ShaderUtil::ShaderUtil()
 {
-	cout << "ShaderUtil started" << endl;
+	cout << "[INFO] ShaderUtil started" << endl;
 }
 
 
 ShaderUtil::~ShaderUtil()
 {
-	cout << "ShaderUtil stopped" << endl;
+	cout << "[INFO] ShaderUtil stopped" << endl;
 }
 
 unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& fragmentShaderFile) {
@@ -68,7 +68,6 @@ void ShaderUtil::bind() {
 	glUseProgram(programID);
 	//locColor = glGetUniformLocation(programID, "color");
 	locMVP = glGetUniformLocation(programID, "MVP");
-	cout << locMVP << endl;
 }
 
 void ShaderUtil::unbind() {

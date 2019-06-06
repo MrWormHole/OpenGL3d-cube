@@ -43,6 +43,8 @@ public:
 	//draw a cube
 	void drawCube();
 
+	inline GLuint getVAO() { return myVAO; }
+
 private:
 	unsigned int myDrawCount;
 	bool isEABused = false;

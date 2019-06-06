@@ -4,12 +4,12 @@
 
 TextureUtil::TextureUtil()
 {
-	cout << "TextureUtil started" << endl;
+	cout << "[INFO] TextureUtil started" << endl;
 }
 
 TextureUtil::~TextureUtil()
 {
-	cout << "TextureUtil stopped" << endl;
+	cout << "[INFO] TextureUtil stopped" << endl;
 }
 
 void TextureUtil::load(const string& fileName) {

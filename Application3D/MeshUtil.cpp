@@ -2,12 +2,12 @@
 
 MeshUtil::MeshUtil()
 {
-	cout << "MeshUtil started" << endl;
+	cout << "[INFO] MeshUtil started" << endl;
 }
 
 MeshUtil::~MeshUtil()
 {
-	cout << "MeshUtil stopped" << endl;
+	cout << "[INFO] MeshUtil stopped" << endl;
 }
 
 void MeshUtil::create(Vertex* vertices,float* textureCoordinates, unsigned int numberOfVertices) {
