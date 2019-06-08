@@ -25,15 +25,18 @@ public:
 	void destroy();
 	void update();
 	void draw(int drawCount);
+	GLFWwindow* getWindow() { return window; }
 private:
 	GLFWwindow* window;
 	Camera* cam;
 	MeshUtil* mu;
 	PhysicsUtil* pu;
 	int frames = 0;
-	double lastTime;
+	double lastTime = 0.0f;
+	double currentTime = 0.0f;
+	double mousePositionX = 0.0f; double mousePositionY = 0.0f;
 
-	void logFrames();
+	double logFrames();
 };
 
 
@@ -79,6 +82,7 @@ void Display::makeContext() {
 		glDepthFunc(GL_LESS); // try GL_ALWAYS to freak out
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
 }
 
@@ -94,8 +98,8 @@ void Display::logStatus() {
 	}
 }
 
-void Display::logFrames() {
-	double currentTime = glfwGetTime();
+double Display::logFrames() {
+	currentTime = glfwGetTime();
 	frames++;
 	if (currentTime - lastTime >= 1.0) {
 		printf("[INFO] %f ms/frame\n", 1000.0 / double(frames));
@@ -104,6 +108,7 @@ void Display::logFrames() {
 		frames = 0;
 		lastTime += 1.0;
 	}
+	return currentTime - lastTime;
 }
 
 void Display::destroy() {
@@ -111,7 +116,7 @@ void Display::destroy() {
 }
 
 void Display::update() {
-	double lastTime = glfwGetTime();
+	lastTime = glfwGetTime();
 	//testing variables
 	float n = 0.2f;
 	bool goUp = true;
@@ -119,8 +124,8 @@ void Display::update() {
 	
 	if (!displayError) {
 		while (!glfwWindowShouldClose(window)) {
-			logFrames();
-			
+			double deltaTime = logFrames();
+		
 			if (goUp) { n += 0.02f; if (n > 1.0f) { goUp = false; } }
 			else { n -= 0.02f; if (n < 0.2f) { goUp = true; } }
 
@@ -141,6 +146,11 @@ void Display::update() {
 			pu->setRotation(test2);
 			//pu->setScale(test3);
 
+			cam->processKeyboardInput(window, deltaTime);
+
+			glfwGetCursorPos(window, &mousePositionX, &mousePositionY);
+			cam->processMouseInput(mousePositionX, mousePositionY);
+
 			cam->update(pu);
 
 			draw(36); //draw count depends on vertex count
@@ -160,3 +170,4 @@ void Display::draw(int drawCount) {
 	glDrawArrays(GL_TRIANGLES, 0, drawCount);
 	glBindVertexArray(0);
 }
+

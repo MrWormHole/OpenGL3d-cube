@@ -2,6 +2,10 @@
 #include "ShaderUtil.h"
 #include "TextureUtil.h"
 
+void test(GLFWwindow* window,double xpos,double ypos) {
+	cout << "test";
+}
+
 int main()
 {
 	Display display;
@@ -100,7 +104,7 @@ int main()
 	PhysicsUtil physicsUtil;
 	physicsUtil.flushTransformValues();
 
-	Camera camera(vec3(0,0,6), 70.0f, (float)(800/600), 0.01f, 1000.0f);
+	Camera camera(vec3(0,0,8), 70.0f, (float)(800/600), 0.01f, 1000.0f);
 	
 	shaderUtil.bind();
 	//textureUtil.bind();
@@ -110,7 +114,7 @@ int main()
 	display.setCamera(camera);
 	display.setMeshUtil(meshUtil);
 	display.setPhysicsUtil(physicsUtil);
-		
+	
 	display.update();
 		
 	shaderUtil.unbind();
