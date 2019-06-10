@@ -24,7 +24,7 @@ public:
 	void logStatus();
 	void destroy();
 	void update();
-	void draw(int drawCount);
+	void draw();
 	GLFWwindow* getWindow() { return window; }
 private:
 	GLFWwindow* window;
@@ -153,7 +153,7 @@ void Display::update() {
 
 			cam->update(pu);
 
-			draw(36); //draw count depends on vertex count
+			draw(); 
 
 			glfwSwapBuffers(window);
 			glfwPollEvents();
@@ -165,9 +165,7 @@ void Display::update() {
 	}
 }
 
-void Display::draw(int drawCount) {
-	glBindVertexArray(mu->getVAO());
-	glDrawArrays(GL_TRIANGLES, 0, drawCount);
-	glBindVertexArray(0);
+void Display::draw() {
+	mu->drawCube();
 }
 

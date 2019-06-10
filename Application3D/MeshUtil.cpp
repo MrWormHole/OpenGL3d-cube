@@ -68,7 +68,7 @@ void MeshUtil::draw() {
 	glBindVertexArray(0);
 }
 
-void MeshUtil::createCube(Vertex* vertices) {
+void MeshUtil::createCube(ColorfulVertex* vertices) {
 	myDrawCount = 36; //not really optimized for drawing
 
 	glGenVertexArrays(1, &myVAO);
@@ -76,7 +76,7 @@ void MeshUtil::createCube(Vertex* vertices) {
 
 	glBindVertexArray(myVAO);
 	glBindBuffer(GL_ARRAY_BUFFER, myVAB[0]);
-	glBufferData(GL_ARRAY_BUFFER, 36 * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 36 * sizeof(ColorfulVertex), vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(8);
 	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (GLvoid *)0);
 	glEnableVertexAttribArray(10);
@@ -86,9 +86,34 @@ void MeshUtil::createCube(Vertex* vertices) {
 	glBindVertexArray(0);
 }
 
+void MeshUtil::createCube(Vertex* vertices, unsigned int* indices) {
+	isEABused = true;
+
+	glGenVertexArrays(1, &myVAO);
+	glGenBuffers(10, myVAB);
+	glGenBuffers(10, myEAB);
+
+	glBindVertexArray(myVAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, myVAB[0]);
+	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, myEAB[0]);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(8);
+	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindVertexArray(0);
+}
+
 void MeshUtil::drawCube() {
 	glBindVertexArray(myVAO);
-	glDrawArrays(GL_TRIANGLES, 0, myDrawCount);
+
+	if (!isEABused) { glDrawArrays(GL_TRIANGLES, 0, myDrawCount); }
+	else { glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr); }
+
 	glBindVertexArray(0);
 }
 
