@@ -1,11 +1,15 @@
+#ifndef DISPLAY_H
+#define DISPLAY_H
+
 #define GLEW_STATIC
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Camera.h"
-#include "MeshUtil.h"
+#include "Renderer.h"
 
 class Display
 {
@@ -16,21 +20,19 @@ public:
 	Display();
 	virtual ~Display();
 	void setCamera(Camera& camera) { cam = &camera; if (cam != nullptr) { cout << "*** cam pointer is set ***" << endl; } }
-	void setMeshUtil(MeshUtil& meshUtil) { mu = &meshUtil; if (mu != nullptr) { cout << "*** mu pointer is set ***" << endl; } }
-	void setPhysicsUtil(PhysicsUtil& physicsUtil) { pu = &physicsUtil; if (pu != nullptr) { cout << "*** pu pointer is set ***" << endl; } }
+	void setRenderer(Renderer& renderer) { rrr = &renderer; if (rrr != nullptr) { cout << "*** rrr pointer is set ***" << endl; } }
 	void initialize();
 	void create();
 	void makeContext();
 	void logStatus();
 	void destroy();
 	void update();
-	void draw();
 	GLFWwindow* getWindow() { return window; }
 private:
 	GLFWwindow* window;
 	Camera* cam;
-	MeshUtil* mu;
-	PhysicsUtil* pu;
+	Renderer* rrr;
+
 	int frames = 0;
 	double lastTime = 0.0f;
 	double currentTime = 0.0f;
@@ -102,7 +104,7 @@ double Display::logFrames() {
 	currentTime = glfwGetTime();
 	frames++;
 	if (currentTime - lastTime >= 1.0) {
-		printf("[INFO] %f ms/frame\n", 1000.0 / double(frames));
+		//printf("[ENGINE-INFO] %f ms/frame\n", 1000.0 / double(frames));
 		const string title = "OpenGL is awesome [" + to_string(frames) + " FPS]";
 		glfwSetWindowTitle(window, title.c_str());
 		frames = 0;
@@ -117,47 +119,23 @@ void Display::destroy() {
 
 void Display::update() {
 	lastTime = glfwGetTime();
-	//testing variables
-	float n = 0.2f;
-	bool goUp = true;
-	float c = 0.00001f;
 	
 	if (!displayError) {
 		while (!glfwWindowShouldClose(window)) {
 			double deltaTime = logFrames();
-		
-			if (goUp) { n += 0.02f; if (n > 1.0f) { goUp = false; } }
-			else { n -= 0.02f; if (n < 0.2f) { goUp = true; } }
 
-			/* Render here */
-			glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-			vec3 test1(pu->getPosition()); //position
-			vec3 test2(pu->getRotation()); //rotation
-			//vec3 test3(cosf(c), cosf(c), cosf(c)); //scale
-			test1.x = sinf(c);
-			test1.z = 2 * cosf(c);
-			test2.z += 0.05f;
-			test2.y += 0.05f;
-			test2.x += 0.05f;
-
-			pu->setPosition(test1);
-			pu->setRotation(test2);
-			//pu->setScale(test3);
-
+			/* Input processing starts here*/
 			cam->processKeyboardInput(window, deltaTime);
-
 			glfwGetCursorPos(window, &mousePositionX, &mousePositionY);
 			cam->processMouseInput(mousePositionX, mousePositionY);
+			/* Input processing ends here*/
 
-			cam->update(pu);
-
-			draw(); 
+			/* Rendering starts here */			
+			rrr->render();
+			/* Rendering ends here */
 
 			glfwSwapBuffers(window);
 			glfwPollEvents();
-			c += 0.01f;
 		}
 	}
 	else {
@@ -165,7 +143,5 @@ void Display::update() {
 	}
 }
 
-void Display::draw() {
-	mu->drawCube();
-}
+#endif
 

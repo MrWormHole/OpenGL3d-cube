@@ -1,3 +1,10 @@
+/*
+THIS CLASS IS DEPRECATED BY 13.06.2019
+NOT ADVISED TO USE THIS CLASS UNTIL COLLISION
+IS IMPLEMENTED IN THE PROJECT
+*/
+
+
 #include <GLM/glm.hpp>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <GLM/gtx/transform.hpp>
@@ -42,6 +49,6 @@ private:
 	vec3 myPosition;
 	vec3 myRotation;
 	vec3 myScale;
-	mat4 MVPmatrix;
+	//mat4 MVPmatrix;
 };
 

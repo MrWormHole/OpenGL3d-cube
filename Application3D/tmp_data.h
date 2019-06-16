@@ -103,4 +103,49 @@ ColorfulVertex cubeDataChunk[36] = {
 	ColorfulVertex(1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
 };
 
+ColorfulVertex cubeDataChunkMovedRightOnX[36] = {
+	// A front 
+	ColorfulVertex(4.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
+	// B right
+	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
+	// C back
+	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f,1.0f,-1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+	// D left 
+	ColorfulVertex(4.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	ColorfulVertex(4.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	// E upper 
+	ColorfulVertex(4.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+	// F bottom 
+	ColorfulVertex(4.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(4.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+	ColorfulVertex(6.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
+};
+
 /* DATAS END HERE */

@@ -11,7 +11,7 @@ ShaderUtil::~ShaderUtil()
 	cout << "[INFO] ShaderUtil stopped" << endl;
 }
 
-unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& fragmentShaderFile) {
+unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& fragmentShaderFile, int index) {
 
 	//ifstream ifs_vertexShader(vertexShaderFile);
 	//const string file_vertexShader((istreambuf_iterator<char>(ifs_vertexShader)), istreambuf_iterator<char>());
@@ -20,7 +20,7 @@ unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& frag
 
 	const string file_vertexShader(readFromShaderFile(vertexShaderFile));
 	const string file_fragmentShader(readFromShaderFile(fragmentShaderFile));
-	programID = glCreateProgram();
+	programID[index] = glCreateProgram();
 
 	unsigned int vertexShader = getCompiledShader(GL_VERTEX_SHADER, file_vertexShader);
 	unsigned int fragmentShader = getCompiledShader(GL_FRAGMENT_SHADER, file_fragmentShader);
@@ -29,19 +29,19 @@ unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& frag
 	//glBindAttribLocation(programID, 9, "texCoord"); //this is for meshUtil to send texture position data
 	//glBindAttribLocation(programID, 10, "color"); //this is for meshUtil to send color data
 
-	glAttachShader(programID, vertexShader);
-	glAttachShader(programID, fragmentShader);
+	glAttachShader(programID[index], vertexShader);
+	glAttachShader(programID[index], fragmentShader);
 
-	glLinkProgram(programID);
-	checkShaderError(programID, GL_LINK_STATUS, true, "Error: Program linking failed");
-	glValidateProgram(programID);
-	checkShaderError(programID, GL_LINK_STATUS, true, "Error: Program validating failed");
+	glLinkProgram(programID[index]);
+	checkShaderError(programID[index], GL_LINK_STATUS, true, "Error: Program linking failed");
+	glValidateProgram(programID[index]);
+	checkShaderError(programID[index], GL_LINK_STATUS, true, "Error: Program validating failed");
 
-	glDetachShader(programID,vertexShader);
-	glDetachShader(programID,fragmentShader);
+	glDetachShader(programID[index],vertexShader);
+	glDetachShader(programID[index],fragmentShader);
 	glDeleteShader(vertexShader); 
 	glDeleteShader(fragmentShader); 
-	return programID;
+	return programID[index];
 }
 
 unsigned int ShaderUtil::getCompiledShader(unsigned int shaderType,const string& shaderSource) {
@@ -64,14 +64,15 @@ unsigned int ShaderUtil::getCompiledShader(unsigned int shaderType,const string&
 	return shaderID;	
 }
 
-void ShaderUtil::bind() {
-	glUseProgram(programID);
+void ShaderUtil::bind(int index) {
+	glUseProgram(programID[index]);
 	//locColor = glGetUniformLocation(programID, "color");
-	locMVP = glGetUniformLocation(programID, "MVP");
+	locMVP = glGetUniformLocation(programID[index], "MVP");
 }
 
 void ShaderUtil::unbind() {
-	glDeleteProgram(programID);
+	//glDeleteProgram(programID[index]);
+	glUseProgram(0);
 }
 
 void ShaderUtil::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const string & errorMessage) {

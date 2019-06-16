@@ -1,7 +1,12 @@
+#ifndef MESH_UTIL_H
+#define MESH_UTIL_H
+
 #include <GLEW/glew.h>
 #include <glm/glm.hpp>
 #include <iostream>
 #include <vector>
+
+#include "Gameobject.h"
 
 using namespace std;
 using namespace glm;
@@ -51,21 +56,24 @@ public:
 	void draw();
 
 	//create a cube
-	void createCube(ColorfulVertex* cubeData);
+	void createCube(ColorfulVertex* cubeData,Gameobject gameobject);
 
 	void createCube(Vertex* vertices, unsigned int* indices);
 
 	//draw a cube
-	void drawCube();
+	void drawCube(int index);
 
-	inline GLuint getVAO() { return myVAO; }
+	inline GLuint getVAO(int index) { return myVAO[index]; }
 
 private:
 	unsigned int myDrawCount;
 	bool isEABused = false;
 	int rendererID = 0;
-	GLuint myVAO; //vertex array object
+	GLuint myVAO[10]; //vertex array object
 	GLuint myVAB[10]; //vertex array buffer
 	GLuint myEAB[10]; //element array buffer
+	GLuint myVAO_2; //test2
 };
+
+#endif
 

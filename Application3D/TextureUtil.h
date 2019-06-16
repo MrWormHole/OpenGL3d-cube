@@ -1,3 +1,6 @@
+#ifndef TEXTURE_UTIL_H
+#define TEXTURE_UTIL_H
+
 #include <GLEW/glew.h>
 #include <iostream>
 #include <string>
@@ -25,4 +28,6 @@ public:
 private:
 	GLuint myTexture;
 };
+
+#endif
 

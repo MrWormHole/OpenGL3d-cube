@@ -1,9 +1,12 @@
-#include <GLM/glm.hpp>
-#define GLM_ENABLE_EXPERIMENTAL
-#include <GLM/gtx/transform.hpp>
+#ifndef CAMERA_H
+#define CAMERA_H
+//#include <GLM/glm.hpp>
+//#define GLM_ENABLE_EXPERIMENTAL
+//#include <GLM/gtx/transform.hpp>
+
 #include <iostream>
 
-#include "PhysicsUtil.h"
+#include "Gameobject.h"
 
 using namespace std;
 using namespace glm;
@@ -33,13 +36,11 @@ public:
 	inline void setForwardDirection(const vec3 forward) { forwardDirection = forward; }
 	inline void setUpDirection(const vec3 up) { upDirection = up; }
 
-	inline const mat4 calculateMVP(PhysicsUtil* physicsUtil) {
-		return (perspectiveMatrix * viewMatrix * (physicsUtil->getModelMatrix())); // projection M * view M * model M
-	}
-
 	inline void setLocMVP(GLint value) { locMVP = value; }
 
-	void update(PhysicsUtil* physicsUtil);
+	const mat4 calculateMVPmatrix(Gameobject* gameobject);
+
+	void update(Gameobject* gameobject);
 
 	void processKeyboardInput(GLFWwindow* window, double deltaTime);
 
@@ -58,12 +59,16 @@ private:
 	bool firstMouse = true;
 };
 
-void Camera::update(PhysicsUtil* physicsUtil) {
+const mat4 Camera::calculateMVPmatrix(Gameobject* gameobject) {
+	return (perspectiveMatrix * viewMatrix * (gameobject->getModelMatrix())); // projection M * view M * model M
+}
+
+void Camera::update(Gameobject* gameobject) {
 	if (locMVP != -1) {
-		glUniformMatrix4fv(locMVP, 1, GL_FALSE, &(calculateMVP(physicsUtil)[0][0]));
+		glUniformMatrix4fv(locMVP, 1, GL_FALSE, &(calculateMVPmatrix(gameobject)[0][0]));
 	}
 	else {
-		cout << "can not find location of Model-View-Projection variable" << endl;
+		cout << "can not find location of Model-View-Projection variable(locMVP) in Camera" << endl;
 	}
 }
 
@@ -115,4 +120,4 @@ void Camera::processMouseInput(double mousePositionX, double mousePositionY) {
 	viewMatrix = lookAt(cameraPosition, cameraPosition + forwardDirection, upDirection);
 }
 
-
+#endif
