@@ -1,4 +1,4 @@
-#Created a renderable cube with OpenGL
+# Created a renderable cube with OpenGL
 
 ![Alt Text](https://media.giphy.com/media/KDETd06f6dnLuKrmQj/giphy.gif)
 
@@ -6,4 +6,4 @@
 
 ![Alt Text](https://media.giphy.com/media/S8kS9TLGUw2T6Ghr1L/giphy.gif)
 
-#Going to make a portalish wormhole to unleash the best quality of a shader and improve my engine
+# Going to make a portalish wormhole to unleash the best quality of a shader and improve my engine
