@@ -36,7 +36,7 @@ public:
 	inline GLint getLocColor() { return locColor; }
 	inline GLint getLocMVP() { return locMVP; }
 private:
-	unsigned int programID[2]; //lets say we will have 2 shaders for 2 different objects
+	unsigned int programID[21]; //lets say we will have 2 shaders for 2 different objects
 	GLint locColor;
 	GLint locMVP;
 

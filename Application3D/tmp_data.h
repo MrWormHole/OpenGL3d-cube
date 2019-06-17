@@ -58,7 +58,7 @@ unsigned int cubeIndices[36] = {
 };
 
 //for a colorful cube with 36 colorful vertices
-ColorfulVertex cubeDataChunk[36] = {
+ColorfulVertex cubeDataChunk_0_0[36] = {
 	// A front 
 	ColorfulVertex(-1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
 	ColorfulVertex(-1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
@@ -103,49 +103,61 @@ ColorfulVertex cubeDataChunk[36] = {
 	ColorfulVertex(1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
 };
 
-ColorfulVertex cubeDataChunkMovedRightOnX[36] = {
-	// A front 
-	ColorfulVertex(4.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f),
-	// B right
-	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f),
-	// C back
-	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f,1.0f,-1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
-	// D left 
-	ColorfulVertex(4.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	ColorfulVertex(4.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
-	// E upper 
-	ColorfulVertex(4.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f),
-	// F bottom 
-	ColorfulVertex(4.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(4.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f),
-	ColorfulVertex(6.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
-};
+ColorfulVertex cubeDataChunk_1_0[36];
+ColorfulVertex cubeDataChunk_neg1_0[36];
+ColorfulVertex cubeDataChunk_0_1[36];
+ColorfulVertex cubeDataChunk_0_neg1[36];
+ColorfulVertex cubeDataChunk_4_0[36];
+ColorfulVertex cubeDataChunk_3_0[36];
+ColorfulVertex cubeDataChunk_5_0[36];
+ColorfulVertex cubeDataChunk_4_1[36];
+ColorfulVertex cubeDataChunk_4_neg1[36];
+ColorfulVertex cubeDataChunk_neg3_2[36];
+ColorfulVertex cubeDataChunk_neg4_3[36];
+ColorfulVertex cubeDataChunk_neg5_3[36];
+ColorfulVertex cubeDataChunk_neg6_2[36];
+ColorfulVertex cubeDataChunk_neg6_1[36];
+ColorfulVertex cubeDataChunk_neg6_0[36];
+ColorfulVertex cubeDataChunk_neg6_neg1[36];
+ColorfulVertex cubeDataChunk_neg6_neg2[36];
+ColorfulVertex cubeDataChunk_neg5_neg3[36];
+ColorfulVertex cubeDataChunk_neg4_neg3[36];
+ColorfulVertex cubeDataChunk_neg3_neg2[36];
+
+ColorfulVertex* createShiftedCubeDataChunk(ColorfulVertex* tmp, int changeX, int changeY, float shiftValue = 2.5) {
+	ColorfulVertex copy[36];
+	memcpy(copy, tmp, sizeof(ColorfulVertex) * 36);
+
+	for (int i = 0; i < 36; i++) {
+		vec3 v = copy[i].getPos();
+		v.x += changeX * shiftValue;
+		v.y += changeY * shiftValue;
+		copy[i].setPos(v);
+	}
+	return copy;
+}
+
+void showThePowahOfCplusplus() {
+	memcpy(cubeDataChunk_1_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 1, 0), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg1_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, -1, 0), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_0_neg1, createShiftedCubeDataChunk(cubeDataChunk_0_0, 0, -1), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_0_1, createShiftedCubeDataChunk(cubeDataChunk_0_0, 0, 1), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_4_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 4, 0), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_4_1, createShiftedCubeDataChunk(cubeDataChunk_0_0, 4, 1), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_4_neg1, createShiftedCubeDataChunk(cubeDataChunk_0_0, 4, -1), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_3_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 3, 0), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_5_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 5, 0), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg3_2, createShiftedCubeDataChunk(cubeDataChunk_0_0, -3, 2), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg3_neg2, createShiftedCubeDataChunk(cubeDataChunk_0_0, -3, -2), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg4_3, createShiftedCubeDataChunk(cubeDataChunk_0_0, -4, 3), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg4_neg3, createShiftedCubeDataChunk(cubeDataChunk_0_0, -4, -3), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg5_3, createShiftedCubeDataChunk(cubeDataChunk_0_0, -5, 3), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg5_neg3, createShiftedCubeDataChunk(cubeDataChunk_0_0, -5, -3), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg6_2, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, 2), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg6_1, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, 1), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg6_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, 0), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg6_neg1, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, -1), sizeof(ColorfulVertex) * 36);
+	memcpy(cubeDataChunk_neg6_neg2, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, -2), sizeof(ColorfulVertex) * 36);
+}
 
 /* DATAS END HERE */

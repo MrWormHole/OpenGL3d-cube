@@ -1,33 +1,38 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <GLEW/glew.h>
-#include <iostream>
+#include <Windows.h>
 #include <vector>
+
 #include "Camera.h"
 #include "ShaderUtil.h"
+#include "TextureUtil.h"
 #include "MeshUtil.h"
-
-using namespace std;
 
 class Renderer {
 public:
 	Renderer();
 	virtual ~Renderer();
-	void setCamera(Camera& camera) { cam = &camera; if (cam != nullptr) { cout << "*** cam pointer is set ***" << endl; } }
-	void setMeshUtil(MeshUtil& meshUtil) { mu = &meshUtil; if (mu != nullptr) { cout << "*** mu pointer is set ***" << endl; } }
-	void setShaderUtil(ShaderUtil& shaderUtil) { su = &shaderUtil; if (su != nullptr) { cout << "*** su pointer is set ***" << endl; } }
 
-	void addGameobject(Gameobject& gameobject) { gameobjectPool.push_back(gameobject); }
+	void setCamera(Camera& camera);
+	void setShaderUtil(ShaderUtil& shaderUtil);
+	void setTextureUtil(TextureUtil& textureUtil);
+	void setMeshUtil(MeshUtil& meshUtil);
 
-	void render();
+	void addGameobject(Gameobject& gameobject);
+
+	void render(int index);
+
+	void renderAll();
 
 private:
 	Camera* cam;
 	ShaderUtil* su;
+	TextureUtil* tu;
 	MeshUtil* mu;
 	vector<Gameobject> gameobjectPool;
-	const unsigned int gameobjectPoolCapacity = 10;
+	const unsigned int gameobjectPoolCapacity = 21;
+	float test = 0.025f;
 };
 
 #endif

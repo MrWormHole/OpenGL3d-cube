@@ -6,10 +6,11 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
-#include <vector>
 
-#include "Camera.h"
 #include "Renderer.h"
+#include "Camera.h"
+
+using namespace std;
 
 class Display
 {
@@ -44,13 +45,13 @@ private:
 
 Display::Display()
 {
-	cout << "[INFO] Display started working" << endl;
+	cout << "[ENGINE-INFO] Display started working" << endl;
 }
 
 
 Display::~Display()
 {
-	cout << "[INFO] Display stopped working" << endl;
+	cout << "[ENGINE-INFO] Display stopped working" << endl;
 }
 
 void Display::initialize() {
@@ -123,7 +124,7 @@ void Display::update() {
 	if (!displayError) {
 		while (!glfwWindowShouldClose(window)) {
 			double deltaTime = logFrames();
-
+			
 			/* Input processing starts here*/
 			cam->processKeyboardInput(window, deltaTime);
 			glfwGetCursorPos(window, &mousePositionX, &mousePositionY);
@@ -131,9 +132,9 @@ void Display::update() {
 			/* Input processing ends here*/
 
 			/* Rendering starts here */			
-			rrr->render();
+			rrr->renderAll();
 			/* Rendering ends here */
-
+			
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 		}

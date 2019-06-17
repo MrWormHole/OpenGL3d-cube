@@ -13,13 +13,13 @@ using namespace glm;
 
 class Vertex {
 public:
+	Vertex() {};
 	Vertex(const vec3& vector3D) {
 		this->vector3D = vector3D;
 	}
 
 	Vertex(const float x,const float y,const float z) {
 		vector3D = vec3(x, y, z);
-		//colorRGBA = vec4(r, g, b, a);
 	}
 protected:
 	vec3 vector3D;
@@ -27,6 +27,7 @@ protected:
 
 class ColorfulVertex : Vertex {
 public:
+	ColorfulVertex() : Vertex() {};
 	ColorfulVertex(const vec3& vector3D,const vec4& colorRGBA) : Vertex(vector3D) {
 		this->colorRGBA = colorRGBA;
 	}
@@ -34,6 +35,12 @@ public:
 	ColorfulVertex(const float x, const float y, const float z, const float r, const float g, const float b, const float a) : Vertex(x,y,z) {
 		colorRGBA = vec4(r, g, b, a);
 	}
+
+	void setPos(const vec3& pos) { vector3D = pos; } //move this to base class
+	vec3 getPos() { return vector3D; } //move this to base class
+
+	void setColor(const vec4& color) { colorRGBA = color; }
+	vec4 getColor() { return colorRGBA; }
 private:
 	vec4 colorRGBA;
 };
@@ -56,7 +63,7 @@ public:
 	void draw();
 
 	//create a cube
-	void createCube(ColorfulVertex* cubeData,Gameobject gameobject);
+	void createCube(ColorfulVertex* cubeData,Gameobject* gameobject);
 
 	void createCube(Vertex* vertices, unsigned int* indices);
 
@@ -69,10 +76,9 @@ private:
 	unsigned int myDrawCount;
 	bool isEABused = false;
 	int rendererID = 0;
-	GLuint myVAO[10]; //vertex array object
-	GLuint myVAB[10]; //vertex array buffer
-	GLuint myEAB[10]; //element array buffer
-	GLuint myVAO_2; //test2
+	GLuint myVAO[21]; //vertex array object
+	GLuint myVAB[21]; //vertex array buffer
+	GLuint myEAB[21]; //element array buffer
 };
 
 #endif

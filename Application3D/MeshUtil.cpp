@@ -3,8 +3,8 @@
 MeshUtil::MeshUtil()
 {
 	cout << "[INFO] MeshUtil started" << endl;
-	glGenVertexArrays(10, myVAO);
-	glGenBuffers(10, myVAB);
+	glGenVertexArrays(22, myVAO);
+	glGenBuffers(22, myVAB);
 }
 
 MeshUtil::~MeshUtil()
@@ -71,13 +71,13 @@ void MeshUtil::draw() {
 }
 
 /////////////////// WORKING OVER HERE
-void MeshUtil::createCube(ColorfulVertex* vertices,Gameobject gameobject) {
+void MeshUtil::createCube(ColorfulVertex* vertices,Gameobject* gameobject) {
 	myDrawCount = 36; //not really optimized for drawing
 
 	
 
-	glBindVertexArray(myVAO[gameobject.getRendererID()]);
-	glBindBuffer(GL_ARRAY_BUFFER, myVAB[gameobject.getRendererID()]);
+	glBindVertexArray(myVAO[gameobject->getRendererID()]);
+	glBindBuffer(GL_ARRAY_BUFFER, myVAB[gameobject->getRendererID()]);
 	glBufferData(GL_ARRAY_BUFFER, 36 * sizeof(ColorfulVertex), vertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(8);
 	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (GLvoid *)0);
@@ -117,13 +117,6 @@ void MeshUtil::drawCube(int index) {
 	else { glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr); }
 
 	glBindVertexArray(0);
-
-	/*glBindVertexArray(myVAO[1]);
-
-	if (!isEABused) { glDrawArrays(GL_TRIANGLES, 0, myDrawCount); }
-	else { glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr); }
-
-	glBindVertexArray(0);*/
 }
 
 

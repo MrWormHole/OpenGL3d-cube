@@ -12,7 +12,8 @@ using namespace glm;
 
 class Gameobject {
 public:
-	Gameobject(string GameobjectName, float xpos, float ypos, float zpos);
+	Gameobject();
+	Gameobject(string GameobjectName);
 	~Gameobject();
 
 	inline vec3 getPosition() { return _position; }
@@ -30,7 +31,7 @@ public:
 	inline void debugPosition() { cout << _position.x << " " << _position.y << " " << _position.z << endl; };
 	inline void debugRotation() { cout << _rotation.x << " " << _rotation.y << " " << _rotation.z << endl; };
 	inline void debugScale() { cout << _scale.x << " " << _scale.y << " " << _scale.z << endl; };
-	inline void debugTotalCount() { cout << "total gameobjects counted: " << total_gameobjects_count << endl; }
+	inline void debugTotalCount() { cout << "Total gameobjects counted: " << total_gameobjects_count << endl; }
 
 	const mat4 getModelMatrix();
 private:
