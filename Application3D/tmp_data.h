@@ -136,6 +136,7 @@ ColorfulVertex* createShiftedCubeDataChunk(ColorfulVertex* tmp, int changeX, int
 	}
 	return copy;
 }
+//same thing can be done for TextureVertex
 
 void showThePowahOfCplusplus() {
 	memcpy(cubeDataChunk_1_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 1, 0), sizeof(ColorfulVertex) * 36);
