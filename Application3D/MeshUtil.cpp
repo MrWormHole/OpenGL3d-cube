@@ -3,8 +3,8 @@
 MeshUtil::MeshUtil()
 {
 	cout << "[INFO] MeshUtil started" << endl;
-	glGenVertexArrays(22, myVAO);
-	glGenBuffers(22, myVAB);
+	glGenVertexArrays(21, myVAO);
+	glGenBuffers(21, myVAB);
 }
 
 MeshUtil::~MeshUtil()

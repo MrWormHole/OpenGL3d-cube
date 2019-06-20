@@ -71,8 +71,11 @@ void ShaderUtil::bind(int index) {
 }
 
 void ShaderUtil::unbind() {
-	//glDeleteProgram(programID[index]);
 	glUseProgram(0);
+}
+
+void ShaderUtil::destroy(int index) {
+	glDeleteProgram(programID[index]);
 }
 
 void ShaderUtil::checkShaderError(GLuint shader, GLuint flag, bool isProgram, const string & errorMessage) {

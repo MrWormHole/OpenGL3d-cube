@@ -14,7 +14,7 @@ public:
 	ShaderUtil();
 	virtual ~ShaderUtil();
 
-	//loading the vertex and the fragment shader after reading the files
+	//loading the vertex and the fragment shader
 	unsigned int load(const string& vertexShaderFile,const string& fragmentShaderFile,int index);	
 
 	//using the program
@@ -22,6 +22,9 @@ public:
 
 	//not using the program
 	void unbind();
+
+	//delete the program
+	void destroy(int index);
 
 	//checking for shader errors
 	void checkShaderError(GLuint shader, GLuint flag, bool isProgram, const string& errorMessage);

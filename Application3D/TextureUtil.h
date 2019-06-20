@@ -17,10 +17,13 @@ public:
 	void load(const string& fileName);
 
 	//using the texture
-	void bind();
+	void bind(unsigned int slot);
 
-	//deleting the texture
+	//not using the texture
 	void unbind();
+
+	//delete the texture
+	void destroy();
 
 	//checking for texture error
 	void checkTextureError(unsigned char* imageData,const string fileName);

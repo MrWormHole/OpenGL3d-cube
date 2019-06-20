@@ -13,9 +13,9 @@ TextureUtil::~TextureUtil()
 }
 
 void TextureUtil::load(const string& fileName) {
-	int width, height, channels;
+	int width, height, bytesPerPixel;
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &channels, 4);
+	unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &bytesPerPixel, 4);
 
 	checkTextureError(imageData,fileName);
 
@@ -35,15 +35,17 @@ void TextureUtil::load(const string& fileName) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void TextureUtil::bind() {
-	glActiveTexture(GL_TEXTURE0);
+void TextureUtil::bind(unsigned int slot) {
+	glActiveTexture(GL_TEXTURE + slot);
 	glBindTexture(GL_TEXTURE_2D, myTexture);
-	cout << "TEXTURE IS BINDED" << endl;
 }
 
 void TextureUtil::unbind() {
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void TextureUtil::destroy() {
 	glDeleteTextures(1, &myTexture);
-	cout << "TEXTURE IS UNBINDED" << endl;
 }
 
 void TextureUtil::checkTextureError(unsigned char* imageData,const string fileName) {

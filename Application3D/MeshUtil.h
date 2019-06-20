@@ -14,21 +14,24 @@ using namespace glm;
 class Vertex {
 public:
 	Vertex() {};
-	Vertex(const vec3& vector3D) {
-		this->vector3D = vector3D;
+	Vertex(const vec3& positionXYZ) {
+		this->positionXYZ = positionXYZ;
 	}
 
 	Vertex(const float x,const float y,const float z) {
-		vector3D = vec3(x, y, z);
+		positionXYZ = vec3(x, y, z);
 	}
+
+	inline void setPos(const vec3& pos) { positionXYZ = pos; } //move this to base class
+	inline vec3 getPos() { return positionXYZ; } //move this to base class
 protected:
-	vec3 vector3D;
+	vec3 positionXYZ;
 };
 
-class ColorfulVertex : Vertex {
+class ColorfulVertex : public Vertex {
 public:
 	ColorfulVertex() : Vertex() {};
-	ColorfulVertex(const vec3& vector3D,const vec4& colorRGBA) : Vertex(vector3D) {
+	ColorfulVertex(const vec3& positionXYZ,const vec4& colorRGBA) : Vertex(positionXYZ) {
 		this->colorRGBA = colorRGBA;
 	}
 
@@ -36,13 +39,27 @@ public:
 		colorRGBA = vec4(r, g, b, a);
 	}
 
-	void setPos(const vec3& pos) { vector3D = pos; } //move this to base class
-	vec3 getPos() { return vector3D; } //move this to base class
-
-	void setColor(const vec4& color) { colorRGBA = color; }
-	vec4 getColor() { return colorRGBA; }
+	inline void setColor(const vec4& color) { colorRGBA = color; }
+	inline vec4 getColor() { return colorRGBA; }
 private:
 	vec4 colorRGBA;
+};
+
+class TextureVertex : public Vertex {
+public:
+	TextureVertex() : Vertex() {};
+	TextureVertex(const vec3& positionXYZ, const vec2& textureXY) : Vertex(positionXYZ) {
+		this->textureXY = textureXY;
+	}
+
+	TextureVertex(const float x, const float y, const float z, const float t1, const float t2) : Vertex(x,y,z) {
+		textureXY = vec2(t1, t2);
+	}
+
+	inline void setTexCoord(const vec2& texCoord) { textureXY = texCoord; }
+	inline vec2 getTexCoord() { return textureXY; }
+private:
+	vec2 textureXY;
 };
 
 class MeshUtil

@@ -6,7 +6,7 @@ Renderer::Renderer() {
 }
 
 Renderer::~Renderer() {
-	cout << "[ENGINE-INFO] Renderer started" << endl;
+	cout << "[ENGINE-INFO] Renderer stopped" << endl;
 }
 
 void Renderer::setCamera(Camera& camera) { cam = &camera; if (cam != nullptr) { cout << "*** cam pointer is set ***" << endl; } }

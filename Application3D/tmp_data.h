@@ -160,4 +160,49 @@ void showThePowahOfCplusplus() {
 	memcpy(cubeDataChunk_neg6_neg2, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, -2), sizeof(ColorfulVertex) * 36);
 }
 
+TextureVertex cubeDataChunk_0_0[36] = {
+	// A front 
+	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), //0.0f, 1.0f
+	TextureVertex(-1.0f, -1.0f, 1.0f, 0.0f, 0.0f), //0.0f, 0.0f
+	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f), //1.0f, 0.0f
+	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), //0.0f, 1.0f
+	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f), //1.0f, 0.0f
+	TextureVertex(1.0f, 1.0f, 1.0f, 1.0f, 1.0f), //1.0f, 1.0f
+	// B right
+	TextureVertex(1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	TextureVertex(1.0f, -1.0f, 1.0f, 0.0f, 0.0f),
+	TextureVertex(1.0f, -1.0f, -1.0f, 1.0f, 0.0f),
+	TextureVertex(1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
+	TextureVertex(1.0f, -1.0f, -1.0f, 1.0f, 0.0f),
+	TextureVertex(1.0f, 1.0f, -1.0f, 1.0f, 1.0f),
+	// C back
+	TextureVertex(1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
+	TextureVertex(-1.0f, -1.0f, -1.0f, 1.0f, 0.0f),
+	TextureVertex(1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(-1.0f, -1.0f, -1.0f, 1.0f, 0.0f),
+	TextureVertex(-1.0f,1.0f,-1.0f, 1.0f, 1.0f),
+	// D left 
+	TextureVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(-1.0f, -1.0f, -1.0f, 0.0f, 0.0f),
+	TextureVertex(-1.0f, -1.0f, 1.0f, 1.0f, 0.0f),
+	TextureVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(-1.0f, -1.0f, 1.0f, 1.0f, 0.0f),
+	TextureVertex(-1.0f, 1.0f, 1.0f, 1.0f, 1.0f),
+	// E upper 
+	TextureVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 0.0f),
+	TextureVertex(1.0f, 1.0f, 1.0f, 1.0f, 0.0f),
+	TextureVertex(-1.0f, 1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(1.0f, 1.0f, 1.0f, 1.0f, 0.0f),
+	TextureVertex(1.0f, 1.0f, -1.0f, 1.0f, 1.0f),
+	// F bottom 
+	TextureVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(-1.0f, -1.0f, 1.0f,  0.0f, 0.0f),
+	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f),
+	TextureVertex(-1.0f, -1.0f, -1.0f, 0.0f, 1.0f),
+	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f),
+	TextureVertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f)
+};
+
 /* DATAS END HERE */
