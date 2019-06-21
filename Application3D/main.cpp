@@ -12,17 +12,22 @@ int main()
 	display.logStatus();
 	
 	ShaderUtil shaderUtil;
-	shaderUtil.load("res/basicShader.v", "res/basicShader.f", 0);
-	shaderUtil.load("res/basicShader.v", "res/basicShader.f", 1);
+	//shaderUtil.load("res/basicShader.v", "res/basicShader.f", 0);
+	//shaderUtil.load("res/basicShader.v", "res/basicShader.f", 1);
+	shaderUtil.load("res/texturedShader.v", "res/texturedShader.f", 0);
 
-	//TextureUtil textureUtil;
+	TextureUtil textureUtil;
 	//textureUtil.load("res/illuminati.png");
+	textureUtil.load("res/tile_3.png"); ////////
 
 	MeshUtil meshUtil;
 	Gameobject cubes[21];
 
+
 	//meshUtil.create(triangleVertices, textureCoordinates, 3);
-	meshUtil.createCube(cubeDataChunk_0_0, &cubes[0]);
+	
+	meshUtil.createCube(cubeDataChunk_textured, &cubes[0]);
+	/*
 	meshUtil.createCube(cubeDataChunk_1_0, &cubes[1]);
 	meshUtil.createCube(cubeDataChunk_neg1_0, &cubes[2]);
 	meshUtil.createCube(cubeDataChunk_0_neg1, &cubes[3]);
@@ -43,23 +48,25 @@ int main()
 	meshUtil.createCube(cubeDataChunk_neg6_0, &cubes[18]);
 	meshUtil.createCube(cubeDataChunk_neg6_neg1, &cubes[19]);
 	meshUtil.createCube(cubeDataChunk_neg6_neg2, &cubes[20]);
+	*/
 
 	Renderer renderer;
-	for (int i = 0; i < 21; i++) {
+	renderer.addGameobject(cubes[0]);
+	/*for (int i = 0; i < 21; i++) {
 		renderer.addGameobject(cubes[i]);
-	}
+	}*/
 
-	Camera camera(vec3(0,0,40), 70.0f, (float)(800/600), 0.01f, 1000.0f);
+	Camera camera(vec3(0,0,10), 70.0f, (float)(800/600), 0.01f, 1000.0f);
 	
 	//shaderUtil.bind(0);
-	//textureUtil.bind();
+	textureUtil.bind(0);
 
 	display.setCamera(camera);
 	display.setRenderer(renderer);
 
 	renderer.setCamera(camera);
 	renderer.setShaderUtil(shaderUtil);
-	////////////renderer.setTextureUtil(textureUtil);
+	renderer.setTextureUtil(textureUtil);
 	renderer.setMeshUtil(meshUtil);
 	
 

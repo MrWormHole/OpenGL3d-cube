@@ -80,6 +80,8 @@ public:
 	void draw();
 
 	//create a cube
+	void createCube(TextureVertex* vertices, Gameobject* gameobject);
+
 	void createCube(ColorfulVertex* cubeData,Gameobject* gameobject);
 
 	void createCube(Vertex* vertices, unsigned int* indices);

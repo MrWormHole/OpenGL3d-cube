@@ -14,7 +14,7 @@ TextureUtil::~TextureUtil()
 
 void TextureUtil::load(const string& fileName) {
 	int width, height, bytesPerPixel;
-	stbi_set_flip_vertically_on_load(true);
+	stbi_set_flip_vertically_on_load(true); //because of png's origin position(top right)
 	unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &bytesPerPixel, 4);
 
 	checkTextureError(imageData,fileName);

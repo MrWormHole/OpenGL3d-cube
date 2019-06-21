@@ -18,6 +18,7 @@ void Renderer::addGameobject(Gameobject& gameobject) { gameobjectPool.push_back(
 
 void Renderer::render(int index) {
 	su->bind(index);
+	//tu->bind(0);
 	cam->setLocMVP(su->getLocMVP());
 	vec3 testPos1(gameobjectPool[index].getRotation());
 	testPos1.y += test;
@@ -31,7 +32,8 @@ void Renderer::renderAll() {
 	glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for (int i = 0; i < 21; i++) {
+	render(0);
+	/*for (int i = 0; i < 21; i++) {
 		render(i);
-	}
+	}*/
 }

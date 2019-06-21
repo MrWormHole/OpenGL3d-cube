@@ -70,11 +70,24 @@ void MeshUtil::draw() {
 	glBindVertexArray(0);
 }
 
+void MeshUtil::createCube(TextureVertex* vertices, Gameobject* gameobject) {
+	myDrawCount = 36; //not optimized yet
+
+	glBindVertexArray(myVAO[gameobject->getRendererID()]);
+	glBindBuffer(GL_ARRAY_BUFFER, myVAB[gameobject->getRendererID()]);
+	glBufferData(GL_ARRAY_BUFFER, 36 * sizeof(TextureVertex), vertices, GL_STATIC_DRAW);
+	glEnableVertexAttribArray(8);
+	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (GLvoid *)0);
+	glEnableVertexAttribArray(12);
+	glVertexAttribPointer(12, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (GLvoid *)(3 * sizeof(float)));
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindVertexArray(0);
+}
+
 /////////////////// WORKING OVER HERE
 void MeshUtil::createCube(ColorfulVertex* vertices,Gameobject* gameobject) {
 	myDrawCount = 36; //not really optimized for drawing
-
-	
 
 	glBindVertexArray(myVAO[gameobject->getRendererID()]);
 	glBindBuffer(GL_ARRAY_BUFFER, myVAB[gameobject->getRendererID()]);

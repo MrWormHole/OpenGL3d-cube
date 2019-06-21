@@ -136,7 +136,6 @@ ColorfulVertex* createShiftedCubeDataChunk(ColorfulVertex* tmp, int changeX, int
 	}
 	return copy;
 }
-//same thing can be done for TextureVertex
 
 void showThePowahOfCplusplus() {
 	memcpy(cubeDataChunk_1_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 1, 0), sizeof(ColorfulVertex) * 36);
@@ -161,7 +160,7 @@ void showThePowahOfCplusplus() {
 	memcpy(cubeDataChunk_neg6_neg2, createShiftedCubeDataChunk(cubeDataChunk_0_0, -6, -2), sizeof(ColorfulVertex) * 36);
 }
 
-TextureVertex cubeDataChunk_0_0[36] = {
+TextureVertex cubeDataChunk_textured[36] = {
 	// A front 
 	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), //0.0f, 1.0f
 	TextureVertex(-1.0f, -1.0f, 1.0f, 0.0f, 0.0f), //0.0f, 0.0f
