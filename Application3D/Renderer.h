@@ -11,7 +11,7 @@
 
 class Renderer {
 public:
-	Renderer();
+	Renderer(ShaderUtil& shaderUtil, TextureUtil& textureUtil, MeshUtil& meshUtil, Camera& camera);
 	virtual ~Renderer();
 
 	void setCamera(Camera& camera);

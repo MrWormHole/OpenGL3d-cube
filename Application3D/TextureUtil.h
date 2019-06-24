@@ -14,22 +14,23 @@ public:
 	virtual ~TextureUtil();
 
 	//loading the texture file
-	void load(const string& fileName);
+	void load(const string& fileName, int index);
 
 	//using the texture
-	void bind(unsigned int slot);
+	void bind(unsigned int slot, int index);
 
 	//not using the texture
 	void unbind();
 
-	//delete the texture
+	//delete all textures
 	void destroy();
 
 	//checking for texture error
 	void checkTextureError(unsigned char* imageData,const string fileName);
 
 private:
-	GLuint myTexture;
+	GLuint myTextures[5];
+	GLsizei textureCount = 5;
 };
 
 #endif

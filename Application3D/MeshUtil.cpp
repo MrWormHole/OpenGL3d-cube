@@ -3,8 +3,8 @@
 MeshUtil::MeshUtil()
 {
 	cout << "[INFO] MeshUtil started" << endl;
-	glGenVertexArrays(21, myVAO);
-	glGenBuffers(21, myVAB);
+	glGenVertexArrays(objCount, myVAO);
+	glGenBuffers(objCount, myVAB);
 }
 
 MeshUtil::~MeshUtil()
@@ -30,7 +30,7 @@ void MeshUtil::create(Vertex* vertices,float* textureCoordinates, unsigned int n
 	glEnableVertexAttribArray(9);
 	glVertexAttribPointer(9, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindBuffer(GL_ARRAY_BUFFER, 0); 
 	glBindVertexArray(0);
 }
 
@@ -53,12 +53,12 @@ void MeshUtil::create(Vertex* vertices, unsigned short* indices, unsigned int nu
 	glEnableVertexAttribArray(8);
 	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindBuffer(GL_ARRAY_BUFFER, 0); 
 	glBindVertexArray(0);
 };
 
 void MeshUtil::destroy() {
-	glDeleteVertexArrays(10, myVAO);
+	glDeleteVertexArrays(objCount, myVAO);
 }
 
 void MeshUtil::draw() {
@@ -81,13 +81,12 @@ void MeshUtil::createCube(TextureVertex* vertices, Gameobject* gameobject) {
 	glEnableVertexAttribArray(12);
 	glVertexAttribPointer(12, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (GLvoid *)(3 * sizeof(float)));
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 
-/////////////////// WORKING OVER HERE
 void MeshUtil::createCube(ColorfulVertex* vertices,Gameobject* gameobject) {
-	myDrawCount = 36; //not really optimized for drawing
+	myDrawCount = 36; //not optimized yet
 
 	glBindVertexArray(myVAO[gameobject->getRendererID()]);
 	glBindBuffer(GL_ARRAY_BUFFER, myVAB[gameobject->getRendererID()]);
@@ -97,7 +96,7 @@ void MeshUtil::createCube(ColorfulVertex* vertices,Gameobject* gameobject) {
 	glEnableVertexAttribArray(10);
 	glVertexAttribPointer(10, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (GLvoid *)(3 * sizeof(float)));
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindBuffer(GL_ARRAY_BUFFER, 0); 
 	glBindVertexArray(0);
 }
 
@@ -119,7 +118,7 @@ void MeshUtil::createCube(Vertex* vertices, unsigned int* indices) {
 	glEnableVertexAttribArray(8);
 	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0); //some legends say unbinding buffer is not a good thing here
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 

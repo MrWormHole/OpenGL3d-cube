@@ -25,10 +25,6 @@ unsigned int ShaderUtil::load(const string& vertexShaderFile, const string& frag
 	unsigned int vertexShader = getCompiledShader(GL_VERTEX_SHADER, file_vertexShader);
 	unsigned int fragmentShader = getCompiledShader(GL_FRAGMENT_SHADER, file_fragmentShader);
 
-	//glBindAttribLocation(programID, 8, "position"); //this is for meshUtil to send position data
-	//glBindAttribLocation(programID, 9, "texCoord"); //this is for meshUtil to send texture position data
-	//glBindAttribLocation(programID, 10, "color"); //this is for meshUtil to send color data
-
 	glAttachShader(programID[index], vertexShader);
 	glAttachShader(programID[index], fragmentShader);
 
@@ -49,7 +45,7 @@ unsigned int ShaderUtil::getCompiledShader(unsigned int shaderType,const string&
 	unsigned int shaderID = glCreateShader(shaderType);
 
 	if (shaderID == 0) {
-		cerr << "Error: Shader creation failed";
+		cerr << "Error: Shader creation failed" << endl;
 	}
 
 	const GLchar* sourceString[1];

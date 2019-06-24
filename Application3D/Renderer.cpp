@@ -1,7 +1,25 @@
 #include "Renderer.h"
 
-Renderer::Renderer() {
+Renderer::Renderer(ShaderUtil& shaderUtil, TextureUtil& textureUtil, MeshUtil& meshUtil, Camera& camera) {
 	gameobjectPool.reserve(gameobjectPoolCapacity);
+	su = &shaderUtil;
+	tu = &textureUtil;
+	mu = &meshUtil;
+	cam = &camera;
+	if (su != nullptr) { 
+		//cout << "*** su pointer is set ***" << endl; 
+		su->bind(0);
+	}
+	if (tu != nullptr) { 
+		//cout << "*** tu pointer is set ***" << endl; 
+		tu->bind(0, 0);
+	}
+	if (mu != nullptr) { 
+		//cout << "*** mu pointer is set ***" << endl; 
+	}
+	if (cam != nullptr) { 
+		//cout << "*** cam pointer is set" << endl; 
+	}
 	cout << "[ENGINE-INFO] Renderer started" << endl;
 }
 
@@ -17,7 +35,7 @@ void Renderer::setMeshUtil(MeshUtil& meshUtil) { mu = &meshUtil; if (mu != nullp
 void Renderer::addGameobject(Gameobject& gameobject) { gameobjectPool.push_back(gameobject); }
 
 void Renderer::render(int index) {
-	su->bind(index);
+	//su->bind(index);
 	//tu->bind(0);
 	cam->setLocMVP(su->getLocMVP());
 	vec3 testPos1(gameobjectPool[index].getRotation());

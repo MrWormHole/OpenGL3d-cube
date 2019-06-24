@@ -16,7 +16,7 @@ class Display
 {
 public:
 	bool displayError = false;
-	GLenum err = GL_FALSE;
+	GLenum glError = GL_FALSE;
 
 	Display();
 	virtual ~Display();
@@ -91,9 +91,9 @@ void Display::makeContext() {
 
 void Display::logStatus() {
 	printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
-	err = glewInit();
-	if (err != GLEW_OK) {
-		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+	glError = glewInit();
+	if (glError != GLEW_OK) {
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(glError));
 		displayError = true;
 	}
 	else {

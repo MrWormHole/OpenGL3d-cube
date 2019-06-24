@@ -1,9 +1,18 @@
+#include <vector>
 #include "Display.h"
 #include "tmp_data.h"
 
 int main()
 {
-	showThePowahOfCplusplus();
+	//loadThePowahOfCplusplus();
+	loadThePowahOfCplusplus_textured();
+
+	/*
+	1- Fix texture bug now
+	1- Think about the mesh simplification and mass drawing
+	2- Optimized drawing for cube
+	3- support multiple textures
+	*/
 
 	Display display;
 	display.initialize();
@@ -13,21 +22,19 @@ int main()
 	
 	ShaderUtil shaderUtil;
 	//shaderUtil.load("res/basicShader.v", "res/basicShader.f", 0);
-	//shaderUtil.load("res/basicShader.v", "res/basicShader.f", 1);
 	shaderUtil.load("res/texturedShader.v", "res/texturedShader.f", 0);
 
 	TextureUtil textureUtil;
-	//textureUtil.load("res/illuminati.png");
-	textureUtil.load("res/tile_3.png"); ////////
+	//textureUtil.load("res/illuminati.png", 0);
+	textureUtil.load("res/tile_1.png", 0);
+	textureUtil.load("res/tile_2.png", 1);
+	textureUtil.load("res/tile_3.png", 2); 
 
 	MeshUtil meshUtil;
 	Gameobject cubes[21];
 
-
 	//meshUtil.create(triangleVertices, textureCoordinates, 3);
-	
-	meshUtil.createCube(cubeDataChunk_textured, &cubes[0]);
-	/*
+	/*meshUtil.createCube(cubeDataChunk_0_0, &cubes[0]);
 	meshUtil.createCube(cubeDataChunk_1_0, &cubes[1]);
 	meshUtil.createCube(cubeDataChunk_neg1_0, &cubes[2]);
 	meshUtil.createCube(cubeDataChunk_0_neg1, &cubes[3]);
@@ -47,33 +54,24 @@ int main()
 	meshUtil.createCube(cubeDataChunk_neg6_1, &cubes[17]);
 	meshUtil.createCube(cubeDataChunk_neg6_0, &cubes[18]);
 	meshUtil.createCube(cubeDataChunk_neg6_neg1, &cubes[19]);
-	meshUtil.createCube(cubeDataChunk_neg6_neg2, &cubes[20]);
-	*/
-
-	Renderer renderer;
-	renderer.addGameobject(cubes[0]);
-	/*for (int i = 0; i < 21; i++) {
-		renderer.addGameobject(cubes[i]);
-	}*/
-
-	Camera camera(vec3(0,0,10), 70.0f, (float)(800/600), 0.01f, 1000.0f);
+	meshUtil.createCube(cubeDataChunk_neg6_neg2, &cubes[20]);*/
 	
-	//shaderUtil.bind(0);
-	textureUtil.bind(0);
+	for (int i = 0; i < 21; i++) {
+		meshUtil.createCube(massTexturedCubeDataCollection[i], &cubes[i]);
 
+	}
+
+	Camera camera(vec3(0, 0, 10), 70.0f, (float)(800 / 600), 0.01f, 1000.0f);
+
+	Renderer renderer(shaderUtil, textureUtil, meshUtil, camera);
+	//renderer.addGameobject(cubes[0]);
+	for (int i = 0; i < 21; i++) {
+		renderer.addGameobject(cubes[i]);
+	}
+	
 	display.setCamera(camera);
 	display.setRenderer(renderer);
-
-	renderer.setCamera(camera);
-	renderer.setShaderUtil(shaderUtil);
-	renderer.setTextureUtil(textureUtil);
-	renderer.setMeshUtil(meshUtil);
-	
-
 	display.update();
-		
-	//shaderUtil.unbind();
-	//textureUtil.unbind();
 	
 	display.destroy();
 	return 1;

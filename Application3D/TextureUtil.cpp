@@ -5,6 +5,7 @@
 TextureUtil::TextureUtil()
 {
 	cout << "[INFO] TextureUtil started" << endl;
+	glGenTextures(textureCount, myTextures);
 }
 
 TextureUtil::~TextureUtil()
@@ -12,15 +13,14 @@ TextureUtil::~TextureUtil()
 	cout << "[INFO] TextureUtil stopped" << endl;
 }
 
-void TextureUtil::load(const string& fileName) {
+void TextureUtil::load(const string& fileName, int index) {
 	int width, height, bytesPerPixel;
 	stbi_set_flip_vertically_on_load(true); //because of png's origin position(top right)
 	unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &bytesPerPixel, 4);
 
 	checkTextureError(imageData,fileName);
 
-	glGenTextures(1, &myTexture);
-	glBindTexture(GL_TEXTURE_2D, myTexture);
+	glBindTexture(GL_TEXTURE_2D, myTextures[index]);
 	// Set our texture parameters
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
@@ -35,9 +35,9 @@ void TextureUtil::load(const string& fileName) {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void TextureUtil::bind(unsigned int slot) {
+void TextureUtil::bind(unsigned int slot, int index) {
 	glActiveTexture(GL_TEXTURE + slot);
-	glBindTexture(GL_TEXTURE_2D, myTexture);
+	glBindTexture(GL_TEXTURE_2D, myTextures[index]);
 }
 
 void TextureUtil::unbind() {
@@ -45,7 +45,7 @@ void TextureUtil::unbind() {
 }
 
 void TextureUtil::destroy() {
-	glDeleteTextures(1, &myTexture);
+	glDeleteTextures(textureCount, myTextures);
 }
 
 void TextureUtil::checkTextureError(unsigned char* imageData,const string fileName) {

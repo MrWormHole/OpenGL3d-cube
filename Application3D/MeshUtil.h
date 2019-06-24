@@ -73,10 +73,10 @@ public:
 
 	void create(Vertex* vertices, unsigned short* indices, unsigned int numberOfVertices);
 
-	//destroy the mesh
+	//destroy all meshes
 	void destroy();
 
-	//draw the mesh
+	//draws the first element
 	void draw();
 
 	//create a cube
@@ -98,6 +98,7 @@ private:
 	GLuint myVAO[21]; //vertex array object
 	GLuint myVAB[21]; //vertex array buffer
 	GLuint myEAB[21]; //element array buffer
+	GLsizei objCount = 21;
 };
 
 #endif

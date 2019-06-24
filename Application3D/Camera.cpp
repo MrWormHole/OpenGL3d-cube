@@ -24,7 +24,7 @@ void Camera::update(Gameobject* gameobject) {
 		glUniformMatrix4fv(locMVP, 1, GL_FALSE, &(calculateMVPmatrix(gameobject)[0][0]));
 	}
 	else {
-		//cout << "can not find location of Model-View-Projection variable(locMVP) in Camera" << endl;
+		cout << "can not find location of Model-View-Projection variable(locMVP) in Camera" << endl;
 	}
 }
 

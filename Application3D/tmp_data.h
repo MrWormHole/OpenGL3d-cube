@@ -21,7 +21,7 @@ float textureCoordinates[6] = {
 		0.5f,0.9f  //top center
 };
 
-//for square
+//points for optimed square drawing
 Vertex squareVertices[] = {
 		Vertex(vec3(-0.5f,-0.5f,0.0f)),
 		Vertex(vec3(0.5f,-0.5f,0.0f)),
@@ -29,7 +29,7 @@ Vertex squareVertices[] = {
 		Vertex(vec3(-0.5f,0.5f,0.0f)),
 };
 
-//for square
+//points for optimed square drawing with only 4 vertices
 unsigned short squareIndices[6] = {
 	0,1,2,
 	2,3,0
@@ -103,26 +103,49 @@ ColorfulVertex cubeDataChunk_0_0[36] = {
 	ColorfulVertex(1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f)
 };
 
-ColorfulVertex cubeDataChunk_1_0[36];
-ColorfulVertex cubeDataChunk_neg1_0[36];
 ColorfulVertex cubeDataChunk_0_1[36];
-ColorfulVertex cubeDataChunk_0_neg1[36];
-ColorfulVertex cubeDataChunk_4_0[36];
+ColorfulVertex cubeDataChunk_1_0[36];
 ColorfulVertex cubeDataChunk_3_0[36];
-ColorfulVertex cubeDataChunk_5_0[36];
+ColorfulVertex cubeDataChunk_4_0[36];
 ColorfulVertex cubeDataChunk_4_1[36];
+ColorfulVertex cubeDataChunk_5_0[36];
+ColorfulVertex cubeDataChunk_0_neg1[36];
 ColorfulVertex cubeDataChunk_4_neg1[36];
+ColorfulVertex cubeDataChunk_neg1_0[36];
 ColorfulVertex cubeDataChunk_neg3_2[36];
 ColorfulVertex cubeDataChunk_neg4_3[36];
 ColorfulVertex cubeDataChunk_neg5_3[36];
-ColorfulVertex cubeDataChunk_neg6_2[36];
-ColorfulVertex cubeDataChunk_neg6_1[36];
 ColorfulVertex cubeDataChunk_neg6_0[36];
+ColorfulVertex cubeDataChunk_neg6_1[36];
+ColorfulVertex cubeDataChunk_neg6_2[36];
+ColorfulVertex cubeDataChunk_neg3_neg2[36];
+ColorfulVertex cubeDataChunk_neg4_neg3[36];
+ColorfulVertex cubeDataChunk_neg5_neg3[36];
 ColorfulVertex cubeDataChunk_neg6_neg1[36];
 ColorfulVertex cubeDataChunk_neg6_neg2[36];
-ColorfulVertex cubeDataChunk_neg5_neg3[36];
-ColorfulVertex cubeDataChunk_neg4_neg3[36];
-ColorfulVertex cubeDataChunk_neg3_neg2[36];
+
+ColorfulVertex* massCubeDataCollection[21] = { cubeDataChunk_0_0,
+											   cubeDataChunk_0_1,
+											   cubeDataChunk_1_0,
+											   cubeDataChunk_3_0,
+											   cubeDataChunk_4_0,
+											   cubeDataChunk_4_1,
+											   cubeDataChunk_5_0,
+											   cubeDataChunk_0_neg1,
+											   cubeDataChunk_4_neg1,
+										       cubeDataChunk_neg1_0,
+										       cubeDataChunk_neg3_2,
+										       cubeDataChunk_neg4_3,
+										       cubeDataChunk_neg5_3,
+										       cubeDataChunk_neg6_0,
+										       cubeDataChunk_neg6_1,
+										       cubeDataChunk_neg6_2,
+										       cubeDataChunk_neg3_neg2,
+										       cubeDataChunk_neg4_neg3,
+										       cubeDataChunk_neg5_neg3,
+										       cubeDataChunk_neg6_neg1,
+										       cubeDataChunk_neg6_neg2
+};
 
 ColorfulVertex* createShiftedCubeDataChunk(ColorfulVertex* tmp, int changeX, int changeY, float shiftValue = 2.5) {
 	ColorfulVertex copy[36];
@@ -137,7 +160,8 @@ ColorfulVertex* createShiftedCubeDataChunk(ColorfulVertex* tmp, int changeX, int
 	return copy;
 }
 
-void showThePowahOfCplusplus() {
+//fuzzy loading
+void loadThePowahOfCplusplus() {
 	memcpy(cubeDataChunk_1_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, 1, 0), sizeof(ColorfulVertex) * 36);
 	memcpy(cubeDataChunk_neg1_0, createShiftedCubeDataChunk(cubeDataChunk_0_0, -1, 0), sizeof(ColorfulVertex) * 36);
 	memcpy(cubeDataChunk_0_neg1, createShiftedCubeDataChunk(cubeDataChunk_0_0, 0, -1), sizeof(ColorfulVertex) * 36);
@@ -162,12 +186,12 @@ void showThePowahOfCplusplus() {
 
 TextureVertex cubeDataChunk_textured[36] = {
 	// A front 
-	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), //0.0f, 1.0f
-	TextureVertex(-1.0f, -1.0f, 1.0f, 0.0f, 0.0f), //0.0f, 0.0f
-	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f), //1.0f, 0.0f
-	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), //0.0f, 1.0f
-	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f), //1.0f, 0.0f
-	TextureVertex(1.0f, 1.0f, 1.0f, 1.0f, 1.0f), //1.0f, 1.0f
+	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), 
+	TextureVertex(-1.0f, -1.0f, 1.0f, 0.0f, 0.0f), 
+	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f), 
+	TextureVertex(-1.0f, 1.0f, 1.0f, 0.0f, 1.0f), 
+	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f), 
+	TextureVertex(1.0f, 1.0f, 1.0f, 1.0f, 1.0f),
 	// B right
 	TextureVertex(1.0f, 1.0f, 1.0f, 0.0f, 1.0f),
 	TextureVertex(1.0f, -1.0f, 1.0f, 0.0f, 0.0f),
@@ -204,5 +228,48 @@ TextureVertex cubeDataChunk_textured[36] = {
 	TextureVertex(1.0f, -1.0f, 1.0f, 1.0f, 0.0f),
 	TextureVertex(1.0f, -1.0f, -1.0f, 1.0f, 1.0f)
 };
+
+vector<TextureVertex*> massTexturedCubeDataCollection;
+
+TextureVertex* createShiftedCubeDataChunk(TextureVertex* tmp, int changeX, int changeY, float shiftValue = 2.5) {
+	TextureVertex copy[36];
+	memcpy(copy, tmp, sizeof(TextureVertex) * 36);
+
+	for (int i = 0; i < 36; i++) {
+		vec3 v = copy[i].getPos();
+		v.x += changeX * shiftValue;
+		v.y += changeY * shiftValue;
+		copy[i].setPos(v);
+	}
+	return copy;
+}
+
+//fuzzy loading
+void loadThePowahOfCplusplus_textured() {
+	massTexturedCubeDataCollection.reserve(21);
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 0, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 1, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -1, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 0, -1));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 0, 1));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 4, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 4, 1));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 4, -1));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 3, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, 5, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -3, 2));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -3, -2));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -4, 3));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -4, -3));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -5, 3));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -5, -3));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -6, 2));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -6, 1));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -6, 0));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -6, -1));
+	massTexturedCubeDataCollection.push_back(createShiftedCubeDataChunk(cubeDataChunk_textured, -6, -2));
+}
+
+
 
 /* DATAS END HERE */

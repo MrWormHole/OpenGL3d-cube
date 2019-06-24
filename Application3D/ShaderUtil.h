@@ -39,7 +39,7 @@ public:
 	inline GLint getLocColor() { return locColor; }
 	inline GLint getLocMVP() { return locMVP; }
 private:
-	unsigned int programID[21]; //lets say we will have 21 shaders for 21 different objects
+	unsigned int programID[21]; 
 	GLint locColor;
 	GLint locMVP;
 
