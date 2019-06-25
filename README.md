@@ -10,5 +10,5 @@
 
 <a href="https://imgflip.com/gif/3486yl"><img src="https://i.imgflip.com/3486yl.gif" title=""/></a>
 ![Alt Text](https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif)
-<a href="https://media.giphy.com/media/S7QmigonhM7KwUPF19/giphy.gif"><img src="https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif" title=""/></a>
+<a href="https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif"><img src="https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif" title=""/></a>
 
