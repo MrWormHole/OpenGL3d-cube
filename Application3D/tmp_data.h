@@ -231,8 +231,8 @@ TextureVertex cubeDataChunk_textured[36] = {
 
 vector<TextureVertex*> massTexturedCubeDataCollection;
 
-TextureVertex* createShiftedCubeDataChunk(TextureVertex* tmp, int changeX, int changeY, float shiftValue = 2.5) {
-	TextureVertex copy[36];
+TextureVertex* createShiftedCubeDataChunk(TextureVertex* tmp, int changeX, int changeY, float shiftValue = 2.0f) {
+	TextureVertex* copy = new TextureVertex[36];
 	memcpy(copy, tmp, sizeof(TextureVertex) * 36);
 
 	for (int i = 0; i < 36; i++) {

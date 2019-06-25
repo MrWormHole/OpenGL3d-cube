@@ -12,7 +12,7 @@ Renderer::Renderer(ShaderUtil& shaderUtil, TextureUtil& textureUtil, MeshUtil& m
 	}
 	if (tu != nullptr) { 
 		//cout << "*** tu pointer is set ***" << endl; 
-		tu->bind(0, 0);
+		//tu->bind(0, 0);
 	}
 	if (mu != nullptr) { 
 		//cout << "*** mu pointer is set ***" << endl; 
@@ -27,21 +27,19 @@ Renderer::~Renderer() {
 	cout << "[ENGINE-INFO] Renderer stopped" << endl;
 }
 
-void Renderer::setCamera(Camera& camera) { cam = &camera; if (cam != nullptr) { cout << "*** cam pointer is set ***" << endl; } }
-void Renderer::setShaderUtil(ShaderUtil& shaderUtil) { su = &shaderUtil; if (su != nullptr) { cout << "*** su pointer is set ***" << endl; } }
-void Renderer::setTextureUtil(TextureUtil& textureUtil) { tu = &textureUtil; if (tu != nullptr) { cout << "*** tu pointer is set ***" << endl; } }
-void Renderer::setMeshUtil(MeshUtil& meshUtil) { mu = &meshUtil; if (mu != nullptr) { cout << "*** mu pointer is set ***" << endl; } }
-
 void Renderer::addGameobject(Gameobject& gameobject) { gameobjectPool.push_back(gameobject); }
 
-void Renderer::render(int index) {
+void Renderer::render(int index,int num) {
 	//su->bind(index);
 	//tu->bind(0);
+	tu->bind(num, num);
 	cam->setLocMVP(su->getLocMVP());
-	vec3 testPos1(gameobjectPool[index].getRotation());
-	testPos1.y += test;
-	testPos1.x += test;
-	gameobjectPool[index].setRotation(testPos1);
+	vec3 testRot(gameobjectPool[index].getRotation());
+	vec3 testPos(gameobjectPool[index].getPosition());
+	testRot.x += test;
+	testPos.x += test;
+	gameobjectPool[index].setRotation(testRot);
+	gameobjectPool[index].setPosition(testPos);
 	cam->update(&gameobjectPool[index]);
 	mu->drawCube(index);
 }
@@ -50,8 +48,15 @@ void Renderer::renderAll() {
 	glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	render(0);
-	/*for (int i = 0; i < 21; i++) {
-		render(i);
-	}*/
+	for (int i = 0; i < gameobjectPoolCapacity; i++) {
+		if (i < 5) {
+			render(i, 2);
+		}
+		else if (i > 4 && i < 10) {
+			render(i, 0);
+		}
+		else {
+			render(i, 1);
+		}
+	}
 }

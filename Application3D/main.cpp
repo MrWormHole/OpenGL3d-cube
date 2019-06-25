@@ -7,13 +7,6 @@ int main()
 	//loadThePowahOfCplusplus();
 	loadThePowahOfCplusplus_textured();
 
-	/*
-	1- Fix texture bug now
-	1- Think about the mesh simplification and mass drawing
-	2- Optimized drawing for cube
-	3- support multiple textures
-	*/
-
 	Display display;
 	display.initialize();
 	display.create();
@@ -23,7 +16,7 @@ int main()
 	ShaderUtil shaderUtil;
 	//shaderUtil.load("res/basicShader.v", "res/basicShader.f", 0);
 	shaderUtil.load("res/texturedShader.v", "res/texturedShader.f", 0);
-
+	
 	TextureUtil textureUtil;
 	//textureUtil.load("res/illuminati.png", 0);
 	textureUtil.load("res/tile_1.png", 0);
@@ -58,13 +51,12 @@ int main()
 	
 	for (int i = 0; i < 21; i++) {
 		meshUtil.createCube(massTexturedCubeDataCollection[i], &cubes[i]);
-
 	}
 
-	Camera camera(vec3(0, 0, 10), 70.0f, (float)(800 / 600), 0.01f, 1000.0f);
+	Camera camera(vec3(0, 0, 30), 70.0f, (float)(800 / 600), 0.01f, 1000.0f);
 
 	Renderer renderer(shaderUtil, textureUtil, meshUtil, camera);
-	//renderer.addGameobject(cubes[0]);
+
 	for (int i = 0; i < 21; i++) {
 		renderer.addGameobject(cubes[i]);
 	}

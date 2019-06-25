@@ -14,14 +14,9 @@ public:
 	Renderer(ShaderUtil& shaderUtil, TextureUtil& textureUtil, MeshUtil& meshUtil, Camera& camera);
 	virtual ~Renderer();
 
-	void setCamera(Camera& camera);
-	void setShaderUtil(ShaderUtil& shaderUtil);
-	void setTextureUtil(TextureUtil& textureUtil);
-	void setMeshUtil(MeshUtil& meshUtil);
-
 	void addGameobject(Gameobject& gameobject);
 
-	void render(int index);
+	void render(int index, int num);
 
 	void renderAll();
 
