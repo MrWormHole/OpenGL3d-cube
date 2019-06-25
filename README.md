@@ -8,5 +8,5 @@
 
 # And enjoyed little bit of textures
 
-![Alt Text](https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif)
+![](https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif)
 
