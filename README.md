@@ -6,5 +6,7 @@
 
 ![Alt Text](https://media.giphy.com/media/S8kS9TLGUw2T6Ghr1L/giphy.gif)
 
+# And enjoyed little bit of textures
+
 ![Alt Text](https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif)
 
