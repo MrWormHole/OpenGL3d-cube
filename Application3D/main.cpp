@@ -27,28 +27,6 @@ int main()
 	Gameobject cubes[21];
 
 	//meshUtil.create(triangleVertices, textureCoordinates, 3);
-	/*meshUtil.createCube(cubeDataChunk_0_0, &cubes[0]);
-	meshUtil.createCube(cubeDataChunk_1_0, &cubes[1]);
-	meshUtil.createCube(cubeDataChunk_neg1_0, &cubes[2]);
-	meshUtil.createCube(cubeDataChunk_0_neg1, &cubes[3]);
-	meshUtil.createCube(cubeDataChunk_0_1, &cubes[4]);
-	meshUtil.createCube(cubeDataChunk_4_0, &cubes[5]);
-	meshUtil.createCube(cubeDataChunk_4_1, &cubes[6]);
-	meshUtil.createCube(cubeDataChunk_4_neg1, &cubes[7]);
-	meshUtil.createCube(cubeDataChunk_3_0, &cubes[8]);
-	meshUtil.createCube(cubeDataChunk_5_0, &cubes[9]);
-	meshUtil.createCube(cubeDataChunk_neg3_2, &cubes[10]);
-	meshUtil.createCube(cubeDataChunk_neg3_neg2, &cubes[11]);
-	meshUtil.createCube(cubeDataChunk_neg4_3, &cubes[12]);
-	meshUtil.createCube(cubeDataChunk_neg4_neg3, &cubes[13]);
-	meshUtil.createCube(cubeDataChunk_neg5_3, &cubes[14]);
-	meshUtil.createCube(cubeDataChunk_neg5_neg3, &cubes[15]);
-	meshUtil.createCube(cubeDataChunk_neg6_2, &cubes[16]);
-	meshUtil.createCube(cubeDataChunk_neg6_1, &cubes[17]);
-	meshUtil.createCube(cubeDataChunk_neg6_0, &cubes[18]);
-	meshUtil.createCube(cubeDataChunk_neg6_neg1, &cubes[19]);
-	meshUtil.createCube(cubeDataChunk_neg6_neg2, &cubes[20]);*/
-	
 	for (int i = 0; i < 21; i++) {
 		meshUtil.createCube(massTexturedCubeDataCollection[i], &cubes[i]);
 	}

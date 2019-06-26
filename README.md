@@ -6,5 +6,8 @@
 
 ![Alt Text](https://media.giphy.com/media/S8kS9TLGUw2T6Ghr1L/giphy.gif)
 
-![Alt Text](https://media.giphy.com/media/hpM8VJUfij4uqp0ygE/giphy.gif)
+# And enjoyed little bit of textures
+
+<a href="https://imgflip.com/gif/3486yl"><img src="https://i.imgflip.com/3486yl.gif" title=""/></a>
+
 
