@@ -9,3 +9,7 @@
 # And enjoyed little bit of textures
 
 <a href="https://imgflip.com/gif/3486yl"><img src="https://i.imgflip.com/3486yl.gif" title=""/></a>
+
+# And little bit of fuzziness
+
+![Alt Text](https://media.giphy.com/media/Tf4hVoIGlQhGi0oKwR/giphy.gif)
