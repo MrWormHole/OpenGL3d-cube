@@ -12,4 +12,4 @@
 
 # And little bit of fuzziness
 
-![Alt Text](https://media.giphy.com/media/Tf4hVoIGlQhGi0oKwR/giphy.gif)
+<a href="https://imgflip.com/gif/34iry8"><img src="https://i.imgflip.com/34iry8.gif" title=""/></a>
