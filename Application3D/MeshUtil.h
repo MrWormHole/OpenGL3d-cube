@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "Gameobject.h"
+#include "OBJModel.h"
 
 using namespace std;
 using namespace glm;
@@ -79,6 +80,9 @@ public:
 	//draws the first element
 	void draw();
 
+	//draws the indexed element
+	void draw(int index);
+
 	//create a cube
 	void createCube(TextureVertex* vertices, Gameobject* gameobject);
 
@@ -86,8 +90,7 @@ public:
 
 	void createCube(Vertex* vertices, unsigned int* indices);
 
-	//draw a cube
-	void drawCube(int index);
+	void createModel(OBJModel& model, Gameobject* gameobject);
 
 	inline GLuint getVAO(int index) { return myVAO[index]; }
 

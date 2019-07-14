@@ -122,12 +122,25 @@ void MeshUtil::createCube(Vertex* vertices, unsigned int* indices) {
 	glBindVertexArray(0);
 }
 
-void MeshUtil::drawCube(int index) {
+void MeshUtil::draw(int index) {
 	glBindVertexArray(myVAO[index]);
 
 	if (!isEABused) { glDrawArrays(GL_TRIANGLES, 0, myDrawCount); }
 	else { glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr); }
 
+	glBindVertexArray(0);
+}
+
+void MeshUtil::createModel(OBJModel& model, Gameobject* gameobject) {
+	myDrawCount = model.totalVertexCount;
+
+	glBindVertexArray(myVAO[gameobject->getRendererID()]);
+	glBindBuffer(GL_ARRAY_BUFFER, myVAB[gameobject->getRendererID()]);
+	glBufferData(GL_ARRAY_BUFFER, model.totalVertexCount * sizeof(OBJIndex) , &model.getVertices()[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(8);
+	glVertexAttribPointer(8, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (GLvoid *)0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 

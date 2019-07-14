@@ -37,17 +37,20 @@ void Renderer::render(int index,int num) {
 	vec3 testRot(gameobjectPool[index].getRotation());
 	vec3 testPos(gameobjectPool[index].getPosition());
 	testRot.x += test;
-	testPos.x += test;
+	testRot.y += test;
+	testRot.z += test;
+	//testPos.x += test;
 	gameobjectPool[index].setRotation(testRot);
 	gameobjectPool[index].setPosition(testPos);
 	cam->update(&gameobjectPool[index]);
-	mu->drawCube(index);
+	mu->draw(index);
 }
 
 void Renderer::renderAll() {
 	glClearColor(0.0f, 0.15f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	//render(0, 0);
 	for (int i = 0; i < gameobjectPoolCapacity; i++) {
 		if (i < 5) {
 			render(i, 2);
